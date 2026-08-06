@@ -1,0 +1,21 @@
+model Achievement{
+    id                String @id @default(uuid())
+    title             String
+    description       String
+    iconUrl           String
+    points            Int
+    createdAt         DateTime @default(now())
+    users             UserAchievement[]
+}
+
+model UserAchievement{
+    id                String @id @default(uuid())
+    userId            String
+    achievementId     String
+    user              User @relation(fields: [userId],references: [id], onDelete: Cascade)
+    achievement       Achievement @relation(fields: [achievementId],references: [id], onDelete: Cascade)
+    earnedAt          DateTime @default(now())
+    @@unique([userId,achievementId])
+    @@index([userId])
+    @@index([achievementId])
+}
