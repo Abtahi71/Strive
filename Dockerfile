@@ -22,11 +22,11 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY prisma.config.ts ./
+COPY tsconfig.json ./
 COPY prisma ./prisma
 
 RUN npm ci
 
-COPY tsconfig.json ./
 COPY src ./src
 
 RUN npx prisma generate
