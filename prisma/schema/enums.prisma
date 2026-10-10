@@ -1,38 +1,38 @@
-enum GlobalRole{
-    SUPERADMIN
-    USER
+enum GlobalRole {
+  SUPERADMIN
+  USER
 }
 
-enum FriendshipStatus{
-    ACCEPTED
-    PENDING
-    DECLINED
+enum FriendshipStatus {
+  ACCEPTED
+  PENDING
+  DECLINED
 }
 
-enum NotificationType{
-    FRIEND_REQUEST
-    ACTIVITY_INVITATION
-    TASK_REMINDER
-    NEW_MESSAGE
-    PROMOTED_TO_ADMIN
-    STREAK
-    LEADERBOARD
-    ACHIEVEMENT
+enum NotificationType {
+  FRIEND_REQUEST
+  ACTIVITY_INVITATION
+  TASK_REMINDER
+  NEW_MESSAGE
+  PROMOTED_TO_ADMIN
+  STREAK
+  LEADERBOARD
+  ACHIEVEMENT
 }
 
-enum ActivityRole{
-    MEMBER
-    ADMIN
+enum ActivityRole {
+  MEMBER
+  ADMIN
 }
 
-enum Visibility{
-    PUBLIC
-    INVITE_ONLY
+enum Visibility {
+  PUBLIC
+  INVITE_ONLY
 }
 
-enum ScheduleType{
-    DAILY
-    CUSTOM
+enum ScheduleType {
+  DAILY
+  CUSTOM
 }
 
 enum DayOfWeek {

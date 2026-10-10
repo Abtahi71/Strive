@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model ActivityTask
@@ -36,7 +36,7 @@ export type ActivityTaskSumAggregateOutputType = {
 
 export type ActivityTaskMinAggregateOutputType = {
   id: string | null
-  acitivtyId: string | null
+  activityId: string | null
   unit: string | null
   targetValue: number | null
   scheduleType: $Enums.ScheduleType | null
@@ -46,11 +46,12 @@ export type ActivityTaskMinAggregateOutputType = {
   creatorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  taskType: $Enums.TaskType | null
 }
 
 export type ActivityTaskMaxAggregateOutputType = {
   id: string | null
-  acitivtyId: string | null
+  activityId: string | null
   unit: string | null
   targetValue: number | null
   scheduleType: $Enums.ScheduleType | null
@@ -60,11 +61,12 @@ export type ActivityTaskMaxAggregateOutputType = {
   creatorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  taskType: $Enums.TaskType | null
 }
 
 export type ActivityTaskCountAggregateOutputType = {
   id: number
-  acitivtyId: number
+  activityId: number
   unit: number
   targetValue: number
   scheduleType: number
@@ -74,6 +76,7 @@ export type ActivityTaskCountAggregateOutputType = {
   creatorId: number
   createdAt: number
   updatedAt: number
+  taskType: number
   _all: number
 }
 
@@ -88,7 +91,7 @@ export type ActivityTaskSumAggregateInputType = {
 
 export type ActivityTaskMinAggregateInputType = {
   id?: true
-  acitivtyId?: true
+  activityId?: true
   unit?: true
   targetValue?: true
   scheduleType?: true
@@ -98,11 +101,12 @@ export type ActivityTaskMinAggregateInputType = {
   creatorId?: true
   createdAt?: true
   updatedAt?: true
+  taskType?: true
 }
 
 export type ActivityTaskMaxAggregateInputType = {
   id?: true
-  acitivtyId?: true
+  activityId?: true
   unit?: true
   targetValue?: true
   scheduleType?: true
@@ -112,11 +116,12 @@ export type ActivityTaskMaxAggregateInputType = {
   creatorId?: true
   createdAt?: true
   updatedAt?: true
+  taskType?: true
 }
 
 export type ActivityTaskCountAggregateInputType = {
   id?: true
-  acitivtyId?: true
+  activityId?: true
   unit?: true
   targetValue?: true
   scheduleType?: true
@@ -126,6 +131,7 @@ export type ActivityTaskCountAggregateInputType = {
   creatorId?: true
   createdAt?: true
   updatedAt?: true
+  taskType?: true
   _all?: true
 }
 
@@ -217,7 +223,7 @@ export type ActivityTaskGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type ActivityTaskGroupByOutputType = {
   id: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType: $Enums.ScheduleType
@@ -227,6 +233,7 @@ export type ActivityTaskGroupByOutputType = {
   creatorId: string
   createdAt: Date
   updatedAt: Date
+  taskType: $Enums.TaskType
   _count: ActivityTaskCountAggregateOutputType | null
   _avg: ActivityTaskAvgAggregateOutputType | null
   _sum: ActivityTaskSumAggregateOutputType | null
@@ -254,7 +261,7 @@ export type ActivityTaskWhereInput = {
   OR?: Prisma.ActivityTaskWhereInput[]
   NOT?: Prisma.ActivityTaskWhereInput | Prisma.ActivityTaskWhereInput[]
   id?: Prisma.StringFilter<"ActivityTask"> | string
-  acitivtyId?: Prisma.StringFilter<"ActivityTask"> | string
+  activityId?: Prisma.StringFilter<"ActivityTask"> | string
   unit?: Prisma.StringFilter<"ActivityTask"> | string
   targetValue?: Prisma.FloatFilter<"ActivityTask"> | number
   scheduleType?: Prisma.EnumScheduleTypeFilter<"ActivityTask"> | $Enums.ScheduleType
@@ -264,15 +271,17 @@ export type ActivityTaskWhereInput = {
   creatorId?: Prisma.StringFilter<"ActivityTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
+  taskType?: Prisma.EnumTaskTypeFilter<"ActivityTask"> | $Enums.TaskType
   activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  schedules?: Prisma.TaskScheduleListRelationFilter
+  acheivements?: Prisma.TaskAchievementListRelationFilter
   progress?: Prisma.TaskProgressListRelationFilter
+  schedules?: Prisma.TaskScheduleListRelationFilter
 }
 
 export type ActivityTaskOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  acitivtyId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   targetValue?: Prisma.SortOrder
   scheduleType?: Prisma.SortOrder
@@ -282,10 +291,12 @@ export type ActivityTaskOrderByWithRelationInput = {
   creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  taskType?: Prisma.SortOrder
   activity?: Prisma.ActivityOrderByWithRelationInput
   creator?: Prisma.UserOrderByWithRelationInput
-  schedules?: Prisma.TaskScheduleOrderByRelationAggregateInput
+  acheivements?: Prisma.TaskAchievementOrderByRelationAggregateInput
   progress?: Prisma.TaskProgressOrderByRelationAggregateInput
+  schedules?: Prisma.TaskScheduleOrderByRelationAggregateInput
 }
 
 export type ActivityTaskWhereUniqueInput = Prisma.AtLeast<{
@@ -293,7 +304,7 @@ export type ActivityTaskWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ActivityTaskWhereInput | Prisma.ActivityTaskWhereInput[]
   OR?: Prisma.ActivityTaskWhereInput[]
   NOT?: Prisma.ActivityTaskWhereInput | Prisma.ActivityTaskWhereInput[]
-  acitivtyId?: Prisma.StringFilter<"ActivityTask"> | string
+  activityId?: Prisma.StringFilter<"ActivityTask"> | string
   unit?: Prisma.StringFilter<"ActivityTask"> | string
   targetValue?: Prisma.FloatFilter<"ActivityTask"> | number
   scheduleType?: Prisma.EnumScheduleTypeFilter<"ActivityTask"> | $Enums.ScheduleType
@@ -303,15 +314,17 @@ export type ActivityTaskWhereUniqueInput = Prisma.AtLeast<{
   creatorId?: Prisma.StringFilter<"ActivityTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
+  taskType?: Prisma.EnumTaskTypeFilter<"ActivityTask"> | $Enums.TaskType
   activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  schedules?: Prisma.TaskScheduleListRelationFilter
+  acheivements?: Prisma.TaskAchievementListRelationFilter
   progress?: Prisma.TaskProgressListRelationFilter
+  schedules?: Prisma.TaskScheduleListRelationFilter
 }, "id">
 
 export type ActivityTaskOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  acitivtyId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   targetValue?: Prisma.SortOrder
   scheduleType?: Prisma.SortOrder
@@ -321,6 +334,7 @@ export type ActivityTaskOrderByWithAggregationInput = {
   creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  taskType?: Prisma.SortOrder
   _count?: Prisma.ActivityTaskCountOrderByAggregateInput
   _avg?: Prisma.ActivityTaskAvgOrderByAggregateInput
   _max?: Prisma.ActivityTaskMaxOrderByAggregateInput
@@ -333,7 +347,7 @@ export type ActivityTaskScalarWhereWithAggregatesInput = {
   OR?: Prisma.ActivityTaskScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ActivityTaskScalarWhereWithAggregatesInput | Prisma.ActivityTaskScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ActivityTask"> | string
-  acitivtyId?: Prisma.StringWithAggregatesFilter<"ActivityTask"> | string
+  activityId?: Prisma.StringWithAggregatesFilter<"ActivityTask"> | string
   unit?: Prisma.StringWithAggregatesFilter<"ActivityTask"> | string
   targetValue?: Prisma.FloatWithAggregatesFilter<"ActivityTask"> | number
   scheduleType?: Prisma.EnumScheduleTypeWithAggregatesFilter<"ActivityTask"> | $Enums.ScheduleType
@@ -343,6 +357,7 @@ export type ActivityTaskScalarWhereWithAggregatesInput = {
   creatorId?: Prisma.StringWithAggregatesFilter<"ActivityTask"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityTask"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityTask"> | Date | string
+  taskType?: Prisma.EnumTaskTypeWithAggregatesFilter<"ActivityTask"> | $Enums.TaskType
 }
 
 export type ActivityTaskCreateInput = {
@@ -355,15 +370,17 @@ export type ActivityTaskCreateInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
   activity: Prisma.ActivityCreateNestedOneWithoutTaskInput
   creator: Prisma.UserCreateNestedOneWithoutCreatedTasksInput
-  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
+  acheivements?: Prisma.TaskAchievementCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUncheckedCreateInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -373,8 +390,10 @@ export type ActivityTaskUncheckedCreateInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
+  taskType?: $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUpdateInput = {
@@ -387,15 +406,17 @@ export type ActivityTaskUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
   activity?: Prisma.ActivityUpdateOneRequiredWithoutTaskNestedInput
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedTasksNestedInput
-  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
+  acheivements?: Prisma.TaskAchievementUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -405,13 +426,15 @@ export type ActivityTaskUncheckedUpdateInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskCreateManyInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -421,6 +444,7 @@ export type ActivityTaskCreateManyInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
 }
 
 export type ActivityTaskUpdateManyMutationInput = {
@@ -433,11 +457,12 @@ export type ActivityTaskUpdateManyMutationInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
 }
 
 export type ActivityTaskUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -447,6 +472,12 @@ export type ActivityTaskUncheckedUpdateManyInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+}
+
+export type ActivityTaskScalarRelationFilter = {
+  is?: Prisma.ActivityTaskWhereInput
+  isNot?: Prisma.ActivityTaskWhereInput
 }
 
 export type ActivityTaskListRelationFilter = {
@@ -461,7 +492,7 @@ export type ActivityTaskOrderByRelationAggregateInput = {
 
 export type ActivityTaskCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  acitivtyId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   targetValue?: Prisma.SortOrder
   scheduleType?: Prisma.SortOrder
@@ -471,6 +502,7 @@ export type ActivityTaskCountOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  taskType?: Prisma.SortOrder
 }
 
 export type ActivityTaskAvgOrderByAggregateInput = {
@@ -479,7 +511,7 @@ export type ActivityTaskAvgOrderByAggregateInput = {
 
 export type ActivityTaskMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  acitivtyId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   targetValue?: Prisma.SortOrder
   scheduleType?: Prisma.SortOrder
@@ -489,11 +521,12 @@ export type ActivityTaskMaxOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  taskType?: Prisma.SortOrder
 }
 
 export type ActivityTaskMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  acitivtyId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   targetValue?: Prisma.SortOrder
   scheduleType?: Prisma.SortOrder
@@ -503,15 +536,25 @@ export type ActivityTaskMinOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  taskType?: Prisma.SortOrder
 }
 
 export type ActivityTaskSumOrderByAggregateInput = {
   targetValue?: Prisma.SortOrder
 }
 
-export type ActivityTaskScalarRelationFilter = {
-  is?: Prisma.ActivityTaskWhereInput
-  isNot?: Prisma.ActivityTaskWhereInput
+export type ActivityTaskCreateNestedOneWithoutAcheivementsInput = {
+  create?: Prisma.XOR<Prisma.ActivityTaskCreateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedCreateWithoutAcheivementsInput>
+  connectOrCreate?: Prisma.ActivityTaskCreateOrConnectWithoutAcheivementsInput
+  connect?: Prisma.ActivityTaskWhereUniqueInput
+}
+
+export type ActivityTaskUpdateOneRequiredWithoutAcheivementsNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityTaskCreateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedCreateWithoutAcheivementsInput>
+  connectOrCreate?: Prisma.ActivityTaskCreateOrConnectWithoutAcheivementsInput
+  upsert?: Prisma.ActivityTaskUpsertWithoutAcheivementsInput
+  connect?: Prisma.ActivityTaskWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ActivityTaskUpdateToOneWithWhereWithoutAcheivementsInput, Prisma.ActivityTaskUpdateWithoutAcheivementsInput>, Prisma.ActivityTaskUncheckedUpdateWithoutAcheivementsInput>
 }
 
 export type ActivityTaskCreateNestedManyWithoutActivityInput = {
@@ -560,8 +603,8 @@ export type EnumScheduleTypeFieldUpdateOperationsInput = {
   set?: $Enums.ScheduleType
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type EnumTaskTypeFieldUpdateOperationsInput = {
+  set?: $Enums.TaskType
 }
 
 export type ActivityTaskCreateNestedOneWithoutSchedulesInput = {
@@ -634,6 +677,90 @@ export type ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput = {
   deleteMany?: Prisma.ActivityTaskScalarWhereInput | Prisma.ActivityTaskScalarWhereInput[]
 }
 
+export type ActivityTaskCreateWithoutAcheivementsInput = {
+  id?: string
+  unit: string
+  targetValue: number
+  scheduleType?: $Enums.ScheduleType
+  name: string
+  description: string
+  imageUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  taskType?: $Enums.TaskType
+  activity: Prisma.ActivityCreateNestedOneWithoutTaskInput
+  creator: Prisma.UserCreateNestedOneWithoutCreatedTasksInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
+}
+
+export type ActivityTaskUncheckedCreateWithoutAcheivementsInput = {
+  id?: string
+  activityId: string
+  unit: string
+  targetValue: number
+  scheduleType?: $Enums.ScheduleType
+  name: string
+  description: string
+  imageUrl?: string | null
+  creatorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  taskType?: $Enums.TaskType
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
+}
+
+export type ActivityTaskCreateOrConnectWithoutAcheivementsInput = {
+  where: Prisma.ActivityTaskWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActivityTaskCreateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedCreateWithoutAcheivementsInput>
+}
+
+export type ActivityTaskUpsertWithoutAcheivementsInput = {
+  update: Prisma.XOR<Prisma.ActivityTaskUpdateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedUpdateWithoutAcheivementsInput>
+  create: Prisma.XOR<Prisma.ActivityTaskCreateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedCreateWithoutAcheivementsInput>
+  where?: Prisma.ActivityTaskWhereInput
+}
+
+export type ActivityTaskUpdateToOneWithWhereWithoutAcheivementsInput = {
+  where?: Prisma.ActivityTaskWhereInput
+  data: Prisma.XOR<Prisma.ActivityTaskUpdateWithoutAcheivementsInput, Prisma.ActivityTaskUncheckedUpdateWithoutAcheivementsInput>
+}
+
+export type ActivityTaskUpdateWithoutAcheivementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutTaskNestedInput
+  creator?: Prisma.UserUpdateOneRequiredWithoutCreatedTasksNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
+}
+
+export type ActivityTaskUncheckedUpdateWithoutAcheivementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
+}
+
 export type ActivityTaskCreateWithoutActivityInput = {
   id?: string
   unit: string
@@ -644,9 +771,11 @@ export type ActivityTaskCreateWithoutActivityInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
   creator: Prisma.UserCreateNestedOneWithoutCreatedTasksInput
-  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
+  acheivements?: Prisma.TaskAchievementCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUncheckedCreateWithoutActivityInput = {
@@ -660,8 +789,10 @@ export type ActivityTaskUncheckedCreateWithoutActivityInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
+  taskType?: $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskCreateOrConnectWithoutActivityInput = {
@@ -695,7 +826,7 @@ export type ActivityTaskScalarWhereInput = {
   OR?: Prisma.ActivityTaskScalarWhereInput[]
   NOT?: Prisma.ActivityTaskScalarWhereInput | Prisma.ActivityTaskScalarWhereInput[]
   id?: Prisma.StringFilter<"ActivityTask"> | string
-  acitivtyId?: Prisma.StringFilter<"ActivityTask"> | string
+  activityId?: Prisma.StringFilter<"ActivityTask"> | string
   unit?: Prisma.StringFilter<"ActivityTask"> | string
   targetValue?: Prisma.FloatFilter<"ActivityTask"> | number
   scheduleType?: Prisma.EnumScheduleTypeFilter<"ActivityTask"> | $Enums.ScheduleType
@@ -705,6 +836,7 @@ export type ActivityTaskScalarWhereInput = {
   creatorId?: Prisma.StringFilter<"ActivityTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityTask"> | Date | string
+  taskType?: Prisma.EnumTaskTypeFilter<"ActivityTask"> | $Enums.TaskType
 }
 
 export type ActivityTaskCreateWithoutSchedulesInput = {
@@ -717,14 +849,16 @@ export type ActivityTaskCreateWithoutSchedulesInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
   activity: Prisma.ActivityCreateNestedOneWithoutTaskInput
   creator: Prisma.UserCreateNestedOneWithoutCreatedTasksInput
+  acheivements?: Prisma.TaskAchievementCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUncheckedCreateWithoutSchedulesInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -734,6 +868,8 @@ export type ActivityTaskUncheckedCreateWithoutSchedulesInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutTaskInput
 }
 
@@ -763,14 +899,16 @@ export type ActivityTaskUpdateWithoutSchedulesInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
   activity?: Prisma.ActivityUpdateOneRequiredWithoutTaskNestedInput
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedTasksNestedInput
+  acheivements?: Prisma.TaskAchievementUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateWithoutSchedulesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -780,6 +918,8 @@ export type ActivityTaskUncheckedUpdateWithoutSchedulesInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutTaskNestedInput
 }
 
@@ -793,14 +933,16 @@ export type ActivityTaskCreateWithoutProgressInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
   activity: Prisma.ActivityCreateNestedOneWithoutTaskInput
   creator: Prisma.UserCreateNestedOneWithoutCreatedTasksInput
+  acheivements?: Prisma.TaskAchievementCreateNestedManyWithoutTaskInput
   schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUncheckedCreateWithoutProgressInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -810,6 +952,8 @@ export type ActivityTaskUncheckedCreateWithoutProgressInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedCreateNestedManyWithoutTaskInput
   schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
 }
 
@@ -839,14 +983,16 @@ export type ActivityTaskUpdateWithoutProgressInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
   activity?: Prisma.ActivityUpdateOneRequiredWithoutTaskNestedInput
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedTasksNestedInput
+  acheivements?: Prisma.TaskAchievementUpdateManyWithoutTaskNestedInput
   schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateWithoutProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -856,6 +1002,8 @@ export type ActivityTaskUncheckedUpdateWithoutProgressInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedUpdateManyWithoutTaskNestedInput
   schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
 }
 
@@ -869,14 +1017,16 @@ export type ActivityTaskCreateWithoutCreatorInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
   activity: Prisma.ActivityCreateNestedOneWithoutTaskInput
-  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
+  acheivements?: Prisma.TaskAchievementCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskUncheckedCreateWithoutCreatorInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -885,8 +1035,10 @@ export type ActivityTaskUncheckedCreateWithoutCreatorInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
+  taskType?: $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedCreateNestedManyWithoutTaskInput
   progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutTaskInput
+  schedules?: Prisma.TaskScheduleUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityTaskCreateOrConnectWithoutCreatorInput = {
@@ -926,6 +1078,7 @@ export type ActivityTaskCreateManyActivityInput = {
   creatorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
 }
 
 export type ActivityTaskUpdateWithoutActivityInput = {
@@ -938,9 +1091,11 @@ export type ActivityTaskUpdateWithoutActivityInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedTasksNestedInput
-  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
+  acheivements?: Prisma.TaskAchievementUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateWithoutActivityInput = {
@@ -954,8 +1109,10 @@ export type ActivityTaskUncheckedUpdateWithoutActivityInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateManyWithoutActivityInput = {
@@ -969,11 +1126,12 @@ export type ActivityTaskUncheckedUpdateManyWithoutActivityInput = {
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
 }
 
 export type ActivityTaskCreateManyCreatorInput = {
   id?: string
-  acitivtyId: string
+  activityId: string
   unit: string
   targetValue: number
   scheduleType?: $Enums.ScheduleType
@@ -982,6 +1140,7 @@ export type ActivityTaskCreateManyCreatorInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  taskType?: $Enums.TaskType
 }
 
 export type ActivityTaskUpdateWithoutCreatorInput = {
@@ -994,14 +1153,16 @@ export type ActivityTaskUpdateWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
   activity?: Prisma.ActivityUpdateOneRequiredWithoutTaskNestedInput
-  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
+  acheivements?: Prisma.TaskAchievementUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -1010,13 +1171,15 @@ export type ActivityTaskUncheckedUpdateWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
+  acheivements?: Prisma.TaskAchievementUncheckedUpdateManyWithoutTaskNestedInput
   progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutTaskNestedInput
+  schedules?: Prisma.TaskScheduleUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityTaskUncheckedUpdateManyWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  acitivtyId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   targetValue?: Prisma.FloatFieldUpdateOperationsInput | number
   scheduleType?: Prisma.EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
@@ -1025,6 +1188,7 @@ export type ActivityTaskUncheckedUpdateManyWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  taskType?: Prisma.EnumTaskTypeFieldUpdateOperationsInput | $Enums.TaskType
 }
 
 
@@ -1033,13 +1197,15 @@ export type ActivityTaskUncheckedUpdateManyWithoutCreatorInput = {
  */
 
 export type ActivityTaskCountOutputType = {
-  schedules: number
+  acheivements: number
   progress: number
+  schedules: number
 }
 
 export type ActivityTaskCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  schedules?: boolean | ActivityTaskCountOutputTypeCountSchedulesArgs
+  acheivements?: boolean | ActivityTaskCountOutputTypeCountAcheivementsArgs
   progress?: boolean | ActivityTaskCountOutputTypeCountProgressArgs
+  schedules?: boolean | ActivityTaskCountOutputTypeCountSchedulesArgs
 }
 
 /**
@@ -1055,8 +1221,8 @@ export type ActivityTaskCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
 /**
  * ActivityTaskCountOutputType without action
  */
-export type ActivityTaskCountOutputTypeCountSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TaskScheduleWhereInput
+export type ActivityTaskCountOutputTypeCountAcheivementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskAchievementWhereInput
 }
 
 /**
@@ -1066,10 +1232,17 @@ export type ActivityTaskCountOutputTypeCountProgressArgs<ExtArgs extends runtime
   where?: Prisma.TaskProgressWhereInput
 }
 
+/**
+ * ActivityTaskCountOutputType without action
+ */
+export type ActivityTaskCountOutputTypeCountSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskScheduleWhereInput
+}
+
 
 export type ActivityTaskSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  acitivtyId?: boolean
+  activityId?: boolean
   unit?: boolean
   targetValue?: boolean
   scheduleType?: boolean
@@ -1079,16 +1252,18 @@ export type ActivityTaskSelect<ExtArgs extends runtime.Types.Extensions.Internal
   creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  taskType?: boolean
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  schedules?: boolean | Prisma.ActivityTask$schedulesArgs<ExtArgs>
+  acheivements?: boolean | Prisma.ActivityTask$acheivementsArgs<ExtArgs>
   progress?: boolean | Prisma.ActivityTask$progressArgs<ExtArgs>
+  schedules?: boolean | Prisma.ActivityTask$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityTaskCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityTask"]>
 
 export type ActivityTaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  acitivtyId?: boolean
+  activityId?: boolean
   unit?: boolean
   targetValue?: boolean
   scheduleType?: boolean
@@ -1098,13 +1273,14 @@ export type ActivityTaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  taskType?: boolean
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityTask"]>
 
 export type ActivityTaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  acitivtyId?: boolean
+  activityId?: boolean
   unit?: boolean
   targetValue?: boolean
   scheduleType?: boolean
@@ -1114,13 +1290,14 @@ export type ActivityTaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  taskType?: boolean
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityTask"]>
 
 export type ActivityTaskSelectScalar = {
   id?: boolean
-  acitivtyId?: boolean
+  activityId?: boolean
   unit?: boolean
   targetValue?: boolean
   scheduleType?: boolean
@@ -1130,14 +1307,16 @@ export type ActivityTaskSelectScalar = {
   creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  taskType?: boolean
 }
 
-export type ActivityTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "acitivtyId" | "unit" | "targetValue" | "scheduleType" | "name" | "description" | "imageUrl" | "creatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["activityTask"]>
+export type ActivityTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activityId" | "unit" | "targetValue" | "scheduleType" | "name" | "description" | "imageUrl" | "creatorId" | "createdAt" | "updatedAt" | "taskType", ExtArgs["result"]["activityTask"]>
 export type ActivityTaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  schedules?: boolean | Prisma.ActivityTask$schedulesArgs<ExtArgs>
+  acheivements?: boolean | Prisma.ActivityTask$acheivementsArgs<ExtArgs>
   progress?: boolean | Prisma.ActivityTask$progressArgs<ExtArgs>
+  schedules?: boolean | Prisma.ActivityTask$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityTaskCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ActivityTaskIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1154,12 +1333,13 @@ export type $ActivityTaskPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     activity: Prisma.$ActivityPayload<ExtArgs>
     creator: Prisma.$UserPayload<ExtArgs>
-    schedules: Prisma.$TaskSchedulePayload<ExtArgs>[]
+    acheivements: Prisma.$TaskAchievementPayload<ExtArgs>[]
     progress: Prisma.$TaskProgressPayload<ExtArgs>[]
+    schedules: Prisma.$TaskSchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    acitivtyId: string
+    activityId: string
     unit: string
     targetValue: number
     scheduleType: $Enums.ScheduleType
@@ -1169,6 +1349,7 @@ export type $ActivityTaskPayload<ExtArgs extends runtime.Types.Extensions.Intern
     creatorId: string
     createdAt: Date
     updatedAt: Date
+    taskType: $Enums.TaskType
   }, ExtArgs["result"]["activityTask"]>
   composites: {}
 }
@@ -1565,8 +1746,9 @@ export interface Prisma__ActivityTaskClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   activity<T extends Prisma.ActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityClient<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   creator<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  schedules<T extends Prisma.ActivityTask$schedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTask$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  acheivements<T extends Prisma.ActivityTask$acheivementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTask$acheivementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progress<T extends Prisma.ActivityTask$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTask$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  schedules<T extends Prisma.ActivityTask$schedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTask$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1597,7 +1779,7 @@ export interface Prisma__ActivityTaskClient<T, Null = never, ExtArgs extends run
  */
 export interface ActivityTaskFieldRefs {
   readonly id: Prisma.FieldRef<"ActivityTask", 'String'>
-  readonly acitivtyId: Prisma.FieldRef<"ActivityTask", 'String'>
+  readonly activityId: Prisma.FieldRef<"ActivityTask", 'String'>
   readonly unit: Prisma.FieldRef<"ActivityTask", 'String'>
   readonly targetValue: Prisma.FieldRef<"ActivityTask", 'Float'>
   readonly scheduleType: Prisma.FieldRef<"ActivityTask", 'ScheduleType'>
@@ -1607,6 +1789,7 @@ export interface ActivityTaskFieldRefs {
   readonly creatorId: Prisma.FieldRef<"ActivityTask", 'String'>
   readonly createdAt: Prisma.FieldRef<"ActivityTask", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ActivityTask", 'DateTime'>
+  readonly taskType: Prisma.FieldRef<"ActivityTask", 'TaskType'>
 }
     
 
@@ -2008,27 +2191,27 @@ export type ActivityTaskDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * ActivityTask.schedules
+ * ActivityTask.acheivements
  */
-export type ActivityTask$schedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ActivityTask$acheivementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the TaskSchedule
+   * Select specific fields to fetch from the TaskAchievement
    */
-  select?: Prisma.TaskScheduleSelect<ExtArgs> | null
+  select?: Prisma.TaskAchievementSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the TaskSchedule
+   * Omit specific fields from the TaskAchievement
    */
-  omit?: Prisma.TaskScheduleOmit<ExtArgs> | null
+  omit?: Prisma.TaskAchievementOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TaskScheduleInclude<ExtArgs> | null
-  where?: Prisma.TaskScheduleWhereInput
-  orderBy?: Prisma.TaskScheduleOrderByWithRelationInput | Prisma.TaskScheduleOrderByWithRelationInput[]
-  cursor?: Prisma.TaskScheduleWhereUniqueInput
+  include?: Prisma.TaskAchievementInclude<ExtArgs> | null
+  where?: Prisma.TaskAchievementWhereInput
+  orderBy?: Prisma.TaskAchievementOrderByWithRelationInput | Prisma.TaskAchievementOrderByWithRelationInput[]
+  cursor?: Prisma.TaskAchievementWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.TaskScheduleScalarFieldEnum | Prisma.TaskScheduleScalarFieldEnum[]
+  distinct?: Prisma.TaskAchievementScalarFieldEnum | Prisma.TaskAchievementScalarFieldEnum[]
 }
 
 /**
@@ -2053,6 +2236,30 @@ export type ActivityTask$progressArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.TaskProgressScalarFieldEnum | Prisma.TaskProgressScalarFieldEnum[]
+}
+
+/**
+ * ActivityTask.schedules
+ */
+export type ActivityTask$schedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TaskSchedule
+   */
+  select?: Prisma.TaskScheduleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TaskSchedule
+   */
+  omit?: Prisma.TaskScheduleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaskScheduleInclude<ExtArgs> | null
+  where?: Prisma.TaskScheduleWhereInput
+  orderBy?: Prisma.TaskScheduleOrderByWithRelationInput | Prisma.TaskScheduleOrderByWithRelationInput[]
+  cursor?: Prisma.TaskScheduleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TaskScheduleScalarFieldEnum | Prisma.TaskScheduleScalarFieldEnum[]
 }
 
 /**

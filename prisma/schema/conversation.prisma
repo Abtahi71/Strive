@@ -1,66 +1,39 @@
 model ConversationGroup {
-
-  id String @id @default(uuid())
-
-  activityId String @unique
-
-  createdAt DateTime @default(now())
-
-  activity Activity @relation(fields: [activityId],references: [id],onDelete: Cascade)
-
-  messages Message[]
+  id         String    @id @default(uuid())
+  activityId String    @unique
+  createdAt  DateTime  @default(now())
+  activity   Activity  @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  messages   Message[]
 }
 
 model Message {
-
-  id String @id @default(uuid())
-
+  id                  String            @id @default(uuid())
   conversationGroupId String
-
-  senderId String
-
-  type MessageType @default(TEXT)
-
-  content String?
-
-  edited Boolean @default(false)
-
-  deletedAt DateTime?
-
-  createdAt DateTime @default(now())
-
-  updatedAt DateTime @updatedAt
-
-  conversationGroup ConversationGroup @relation(fields: [conversationGroupId],references: [id],onDelete: Cascade)
-
-  sender User @relation(fields: [senderId],references: [id],onDelete: Cascade)
-
-  attachments Attachment[]
+  senderId            String
+  type                MessageType       @default(TEXT)
+  content             String?
+  edited              Boolean           @default(false)
+  deletedAt           DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  attachments         Attachment[]
+  conversationGroup   ConversationGroup @relation(fields: [conversationGroupId], references: [id], onDelete: Cascade)
+  sender              User              @relation(fields: [senderId], references: [id], onDelete: Cascade)
 
   @@index([conversationGroupId])
-
   @@index([senderId])
-
   @@index([createdAt])
 }
 
 model Attachment {
-
-  id String @id @default(uuid())
-
+  id        String   @id @default(uuid())
   messageId String
-
-  url String
-
-  fileName String
-
-  mimeType String
-
-  size Int
-
+  url       String
+  fileName  String
+  mimeType  String
+  size      Int
   createdAt DateTime @default(now())
-
-  message Message @relation(fields: [messageId],references: [id],onDelete: Cascade)
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   @@index([messageId])
 }

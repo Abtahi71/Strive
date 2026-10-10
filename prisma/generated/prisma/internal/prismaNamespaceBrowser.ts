@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models'
+export type * from './prismaNamespace'
 
 export const Decimal = runtime.Decimal
 
@@ -51,11 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Achievement: 'Achievement',
-  UserAchievement: 'UserAchievement',
+  ChatConversation: 'ChatConversation',
+  ChatMessage: 'ChatMessage',
+  TaskAchievement: 'TaskAchievement',
+  UserTaskAchievement: 'UserTaskAchievement',
   Activity: 'Activity',
   ActivityMember: 'ActivityMember',
   ActivityInvitation: 'ActivityInvitation',
+  Quiz: 'Quiz',
   ActivityTask: 'ActivityTask',
   TaskSchedule: 'TaskSchedule',
   TaskProgress: 'TaskProgress',
@@ -69,7 +72,9 @@ export const ModelName = {
   ConversationGroup: 'ConversationGroup',
   Message: 'Message',
   Attachment: 'Attachment',
-  Notification: 'Notification'
+  knowledge_chunks: 'knowledge_chunks',
+  Notification: 'Notification',
+  WebsiteUsage: 'WebsiteUsage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -88,26 +93,55 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const AchievementScalarFieldEnum = {
+export const ChatConversationScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  description: 'description',
-  iconUrl: 'iconUrl',
-  points: 'points',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ChatConversationScalarFieldEnum = (typeof ChatConversationScalarFieldEnum)[keyof typeof ChatConversationScalarFieldEnum]
+
+
+export const ChatMessageScalarFieldEnum = {
+  id: 'id',
+  conversationId: 'conversationId',
+  role: 'role',
+  content: 'content',
+  toolCalls: 'toolCalls',
+  toolCallId: 'toolCallId',
   createdAt: 'createdAt'
 } as const
 
-export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
+export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
 
 
-export const UserAchievementScalarFieldEnum = {
+export const TaskAchievementScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  title: 'title',
+  description: 'description',
+  iconUrl: 'iconUrl',
+  totalValue: 'totalValue',
+  unit: 'unit',
+  createdAt: 'createdAt',
+  iconType: 'iconType',
+  iconValue: 'iconValue'
+} as const
+
+export type TaskAchievementScalarFieldEnum = (typeof TaskAchievementScalarFieldEnum)[keyof typeof TaskAchievementScalarFieldEnum]
+
+
+export const UserTaskAchievementScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   achievementId: 'achievementId',
-  earnedAt: 'earnedAt'
+  isEarned: 'isEarned',
+  completedValue: 'completedValue',
+  completedStreak: 'completedStreak'
 } as const
 
-export type UserAchievementScalarFieldEnum = (typeof UserAchievementScalarFieldEnum)[keyof typeof UserAchievementScalarFieldEnum]
+export type UserTaskAchievementScalarFieldEnum = (typeof UserTaskAchievementScalarFieldEnum)[keyof typeof UserTaskAchievementScalarFieldEnum]
 
 
 export const ActivityScalarFieldEnum = {
@@ -155,9 +189,19 @@ export const ActivityInvitationScalarFieldEnum = {
 export type ActivityInvitationScalarFieldEnum = (typeof ActivityInvitationScalarFieldEnum)[keyof typeof ActivityInvitationScalarFieldEnum]
 
 
+export const QuizScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  answer: 'answer',
+  options: 'options'
+} as const
+
+export type QuizScalarFieldEnum = (typeof QuizScalarFieldEnum)[keyof typeof QuizScalarFieldEnum]
+
+
 export const ActivityTaskScalarFieldEnum = {
   id: 'id',
-  acitivtyId: 'acitivtyId',
+  activityId: 'activityId',
   unit: 'unit',
   targetValue: 'targetValue',
   scheduleType: 'scheduleType',
@@ -166,7 +210,8 @@ export const ActivityTaskScalarFieldEnum = {
   imageUrl: 'imageUrl',
   creatorId: 'creatorId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  taskType: 'taskType'
 } as const
 
 export type ActivityTaskScalarFieldEnum = (typeof ActivityTaskScalarFieldEnum)[keyof typeof ActivityTaskScalarFieldEnum]
@@ -191,7 +236,9 @@ export const TaskProgressScalarFieldEnum = {
   targetSnapshot: 'targetSnapshot',
   isCompleted: 'isCompleted',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  currentStreak: 'currentStreak',
+  longestStreak: 'longestStreak'
 } as const
 
 export type TaskProgressScalarFieldEnum = (typeof TaskProgressScalarFieldEnum)[keyof typeof TaskProgressScalarFieldEnum]
@@ -234,7 +281,8 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   globalRole: 'globalRole',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  googleId: 'googleId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -332,6 +380,16 @@ export const AttachmentScalarFieldEnum = {
 export type AttachmentScalarFieldEnum = (typeof AttachmentScalarFieldEnum)[keyof typeof AttachmentScalarFieldEnum]
 
 
+export const Knowledge_chunksScalarFieldEnum = {
+  id: 'id',
+  source: 'source',
+  content: 'content',
+  created_at: 'created_at'
+} as const
+
+export type Knowledge_chunksScalarFieldEnum = (typeof Knowledge_chunksScalarFieldEnum)[keyof typeof Knowledge_chunksScalarFieldEnum]
+
+
 export const NotificationScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -344,6 +402,20 @@ export const NotificationScalarFieldEnum = {
 } as const
 
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const WebsiteUsageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sessionId: 'sessionId',
+  domain: 'domain',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  durationSec: 'durationSec',
+  createdAt: 'createdAt'
+} as const
+
+export type WebsiteUsageScalarFieldEnum = (typeof WebsiteUsageScalarFieldEnum)[keyof typeof WebsiteUsageScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -370,14 +442,6 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -385,4 +449,12 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

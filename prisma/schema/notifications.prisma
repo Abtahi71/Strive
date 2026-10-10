@@ -1,16 +1,16 @@
-model Notification{
-    id        String @id @default(uuid())
-    title     String
-    content   String
-    userId    String 
-    createdAt DateTime
-    type      NotificationType
-    isRead    Boolean @default(false)
-    data      Json?
-    user      User @relation(fields: [userId],references: [id],onDelete: Cascade)
+model Notification {
+  id        String           @id @default(uuid())
+  title     String
+  content   String
+  userId    String
+  createdAt DateTime
+  type      NotificationType
+  isRead    Boolean          @default(false)
+  data      Json?
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@index([userId])
-    @@index([isRead])
-    @@index([type])
-    @@index([createdAt])
+  @@index([userId])
+  @@index([isRead])
+  @@index([type])
+  @@index([createdAt])
 }

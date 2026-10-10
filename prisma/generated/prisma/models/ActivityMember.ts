@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model ActivityMember
@@ -264,8 +264,8 @@ export type ActivityMemberWhereInput = {
   currentStreak?: Prisma.IntFilter<"ActivityMember"> | number
   longestStreak?: Prisma.IntFilter<"ActivityMember"> | number
   completionRate?: Prisma.FloatFilter<"ActivityMember"> | number
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type ActivityMemberOrderByWithRelationInput = {
@@ -279,8 +279,8 @@ export type ActivityMemberOrderByWithRelationInput = {
   currentStreak?: Prisma.SortOrder
   longestStreak?: Prisma.SortOrder
   completionRate?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   activity?: Prisma.ActivityOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type ActivityMemberWhereUniqueInput = Prisma.AtLeast<{
@@ -298,8 +298,8 @@ export type ActivityMemberWhereUniqueInput = Prisma.AtLeast<{
   currentStreak?: Prisma.IntFilter<"ActivityMember"> | number
   longestStreak?: Prisma.IntFilter<"ActivityMember"> | number
   completionRate?: Prisma.FloatFilter<"ActivityMember"> | number
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "activityId_userId">
 
 export type ActivityMemberOrderByWithAggregationInput = {
@@ -345,8 +345,8 @@ export type ActivityMemberCreateInput = {
   currentStreak?: number
   longestStreak?: number
   completionRate?: number
-  user: Prisma.UserCreateNestedOneWithoutActivityInput
   activity: Prisma.ActivityCreateNestedOneWithoutMembersInput
+  user: Prisma.UserCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityMemberUncheckedCreateInput = {
@@ -371,8 +371,8 @@ export type ActivityMemberUpdateInput = {
   currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   completionRate?: Prisma.FloatFieldUpdateOperationsInput | number
-  user?: Prisma.UserUpdateOneRequiredWithoutActivityNestedInput
   activity?: Prisma.ActivityUpdateOneRequiredWithoutMembersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutActivityNestedInput
 }
 
 export type ActivityMemberUncheckedUpdateInput = {
@@ -539,10 +539,6 @@ export type EnumActivityRoleFieldUpdateOperationsInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
 }
 
 export type FloatFieldUpdateOperationsInput = {
@@ -820,8 +816,8 @@ export type ActivityMemberSelect<ExtArgs extends runtime.Types.Extensions.Intern
   currentStreak?: boolean
   longestStreak?: boolean
   completionRate?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityMember"]>
 
 export type ActivityMemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -835,8 +831,8 @@ export type ActivityMemberSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   currentStreak?: boolean
   longestStreak?: boolean
   completionRate?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityMember"]>
 
 export type ActivityMemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -850,8 +846,8 @@ export type ActivityMemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   currentStreak?: boolean
   longestStreak?: boolean
   completionRate?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityMember"]>
 
 export type ActivityMemberSelectScalar = {
@@ -869,23 +865,23 @@ export type ActivityMemberSelectScalar = {
 
 export type ActivityMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "activityId" | "role" | "joinedAt" | "leftAt" | "isActive" | "currentStreak" | "longestStreak" | "completionRate", ExtArgs["result"]["activityMember"]>
 export type ActivityMemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ActivityMemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ActivityMemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $ActivityMemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ActivityMember"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     activity: Prisma.$ActivityPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1292,8 +1288,8 @@ readonly fields: ActivityMemberFieldRefs;
  */
 export interface Prisma__ActivityMemberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   activity<T extends Prisma.ActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityClient<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

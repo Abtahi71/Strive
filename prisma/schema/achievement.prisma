@@ -1,21 +1,37 @@
-model Achievement{
-    id                String @id @default(uuid())
-    title             String
-    description       String
-    iconUrl           String
-    points            Int
-    createdAt         DateTime @default(now())
-    users             UserAchievement[]
+model TaskAchievement {
+  id          String                @id @default(uuid())
+  taskId      String
+  title       String
+  description String
+  iconUrl     String?
+  totalValue  Int
+  unit        String?
+  createdAt   DateTime              @default(now())
+  iconType    IconType?             @default(DEFAULT)
+  iconValue   String?
+  task        ActivityTask          @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  users       UserTaskAchievement[]
 }
 
-model UserAchievement{
-    id                String @id @default(uuid())
-    userId            String
-    achievementId     String
-    user              User @relation(fields: [userId],references: [id], onDelete: Cascade)
-    achievement       Achievement @relation(fields: [achievementId],references: [id], onDelete: Cascade)
-    earnedAt          DateTime @default(now())
-    @@unique([userId,achievementId])
-    @@index([userId])
-    @@index([achievementId])
+model UserTaskAchievement {
+  id              String          @id @default(uuid())
+  userId          String
+  achievementId   String
+  isEarned        Boolean
+  completedValue  Int             @default(0)
+  completedStreak Int             @default(0)
+  achievement     TaskAchievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([achievementId])
+}
+
+enum IconType {
+  DEFAULT
+  ICON
+  PREBUILT
+  CUSTOM
+  EMOJI
 }

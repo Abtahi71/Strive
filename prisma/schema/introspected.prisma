@@ -1,0 +1,7 @@
+model knowledge_chunks {
+  id         String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  source     String
+  content    String
+  embedding  Unsupported("vector")?
+  created_at DateTime?              @default(now()) @db.Timestamp(6)
+}

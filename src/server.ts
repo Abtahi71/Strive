@@ -1,13 +1,23 @@
-import app from "./app.js";
+import http from "http";
+import app from "./app";
+import { initializeSocket } from "./app/socket/socket.server";
 
-const bootstrap = async () => {
-  try {
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`Server running on port ${process.env.PORT || 5000}`);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-bootstrap()
+const PORT = process.env.PORT || 5000;
+
+/*
+ * Create HTTP server
+ */
+const httpServer = http.createServer(app);
+
+/*
+ * Initialize Socket.IO
+ */
+const io = initializeSocket(httpServer);
+
+/*
+ * Start server
+ */
+httpServer.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

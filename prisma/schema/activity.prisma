@@ -1,163 +1,153 @@
-model Activity{
-    id                 String @id @default(uuid())
-    name               String
-    description        String
-    imageUrl           String
-    memberCount        Int @default(0)
-    taskCount          Int @default(0)
-    creatorId          String 
-    creator            User @relation("ActivityCreator",fields: [creatorId],references: [id],onDelete: Cascade)
-    createdAt          DateTime @default(now())
-    updatedAt          DateTime @updatedAt
-    
-    task               ActivityTask[]
-    invitations        ActivityInvitation[]
-    group              ConversationGroup?            
-    members             ActivityMember[]
-    dailyProgress       ActivityDailyProgress[]
-    visibility          Visibility
+model Activity {
+  id            String                  @id @default(uuid())
+  name          String
+  description   String
+  imageUrl      String
+  memberCount   Int                     @default(0)
+  taskCount     Int                     @default(0)
+  creatorId     String
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+  visibility    Visibility
+  creator       User                    @relation("ActivityCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  dailyProgress ActivityDailyProgress[]
+  invitations   ActivityInvitation[]
+  members       ActivityMember[]
+  task          ActivityTask[]
+  group         ConversationGroup?
 
-    @@index([visibility])
-    @@index([creatorId])
-    
-
-    
+  @@index([visibility])
+  @@index([creatorId])
 }
 
+model ActivityMember {
+  id             String       @id @default(uuid())
+  userId         String
+  activityId     String
+  role           ActivityRole
+  joinedAt       DateTime
+  leftAt         DateTime?
+  isActive       Boolean      @default(true)
+  currentStreak  Int          @default(0)
+  longestStreak  Int          @default(0)
+  completionRate Float        @default(0)
+  activity       Activity     @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-model ActivityMember{
-    id                 String @id @default(uuid())
-    userId             String
-    user               User @relation(fields: [userId],references: [id],onDelete: Cascade)
-    activityId         String
-    activity           Activity @relation(fields: [activityId],references: [id],onDelete: Cascade)
-    role               ActivityRole
-    joinedAt           DateTime
-    leftAt             DateTime?
-    isActive           Boolean @default(true)
-    currentStreak      Int @default(0)
-    longestStreak      Int @default(0)
-    completionRate     Float @default(0)
-
-    @@unique([activityId,userId])
-    @@index([activityId])
-    @@index([userId])
+  @@unique([activityId, userId])
+  @@index([activityId])
+  @@index([userId])
 }
 
 model ActivityInvitation {
-
-  id String @id @default(uuid())
-
+  id         String    @id @default(uuid())
   activityId String
-
-  senderId String
-
+  senderId   String
   receiverId String
-
-  expiresAt DateTime?
-
+  expiresAt  DateTime?
   acceptedAt DateTime?
+  createdAt  DateTime  @default(now())
+  activity   Activity  @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  receiver   User      @relation("InvitationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender     User      @relation("InvitationSender", fields: [senderId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
+  @@index([receiverId, activityId, senderId])
+}
 
-  activity Activity @relation(fields: [activityId],references: [id],onDelete: Cascade)
+model Quiz {
+  id       String   @id @default(uuid())
+  question String
+  answer   String?
+  options  String[]
+}
 
-  sender User @relation("InvitationSender",fields: [senderId],references: [id],onDelete: Cascade)
-
-  receiver User @relation("InvitationReceiver",fields: [receiverId],references: [id],onDelete: Cascade)
-
-  @@index([receiverId])
+model ActivityTask {
+  id           String            @id @default(uuid())
+  activityId   String
+  unit         String
+  targetValue  Float
+  scheduleType ScheduleType      @default(DAILY)
+  name         String
+  description  String
+  imageUrl     String?
+  creatorId    String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  taskType     TaskType          @default(VALUE)
+  activity     Activity          @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  creator      User              @relation("TaskCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  acheivements TaskAchievement[]
+  progress     TaskProgress[]
+  schedules    TaskSchedule[]
 
   @@index([activityId])
+  @@index([creatorId])
 }
 
-model ActivityTask{
-    id                 String @id @default(uuid())
-    acitivtyId         String
-    activity           Activity @relation(fields: [acitivtyId],references: [id],onDelete: Cascade)
-    unit               String
-    targetValue        Float
-    scheduleType       ScheduleType @default(DAILY)
-    name               String
-    description        String
-    imageUrl           String?
-    creatorId          String
-    creator            User @relation("TaskCreator",fields: [creatorId],references: [id],onDelete: Cascade)
-    createdAt          DateTime @default(now())
-    updatedAt          DateTime @updatedAt
-    schedules          TaskSchedule[]
-    progress           TaskProgress[]
+model TaskSchedule {
+  id     String       @id @default(uuid())
+  taskId String
+  day    DayOfWeek
+  task   ActivityTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
 
-    @@index([acitivtyId])
-    @@index([creatorId])
-
-             
+  @@unique([taskId, day])
 }
 
+model TaskProgress {
+  id             String              @id @default(uuid())
+  activityId     String
+  taskId         String
+  userId         String
+  date           DateTime
+  completedValue Decimal             @db.Decimal(10, 2)
+  targetSnapshot Decimal             @db.Decimal(10, 2)
+  isCompleted    Boolean             @default(false)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  currentStreak  Int                 @default(0)
+  longestStreak  Int                 @default(0)
+  task           ActivityTask        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entries        TaskProgressEntry[]
 
-model TaskSchedule{
-    id String  @id @default(uuid())
-    taskId  String
-    day DayOfWeek
-    task ActivityTask @relation(fields: [taskId],references: [id],onDelete: Cascade)
-    @@unique([taskId,day])
-}
-
-model TaskProgress{
-    id String  @id @default(uuid())
-    activityId  String
-    taskId      String
-    task        ActivityTask @relation(fields: [taskId],references: [id],onDelete: Cascade)
-    user        User @relation(fields: [userId],references: [id],onDelete: Cascade)
-    userId      String
-    date        DateTime
-    completedValue Decimal @db.Decimal(10,2)
-    targetSnapshot Decimal @db.Decimal(10,2)
-    isCompleted Boolean @default(false)
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    entries     TaskProgressEntry[]
-    @@unique([taskId,userId,date])
-    @@index([taskId])
-    @@index([userId])
+  @@unique([taskId, userId, date])
+  @@index([taskId])
+  @@index([userId])
 }
 
 model TaskProgressEntry {
-
-  id String @id @default(uuid())
-
+  id         String       @id @default(uuid())
   progressId String
-
-  value Decimal @db.Decimal(10,2)
-
-  note String?
-
-  createdAt DateTime @default(now())
-
-  progress TaskProgress @relation(fields: [progressId],references: [id],onDelete: Cascade)
+  value      Decimal      @db.Decimal(10, 2)
+  note       String?
+  createdAt  DateTime     @default(now())
+  progress   TaskProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@index([progressId])
-
 }
 
-model ActivityDailyProgress{
-    id String @id @default(uuid())
-    activityId String
-    userId  String
+model ActivityDailyProgress {
+  id                   String   @id @default(uuid())
+  activityId           String
+  userId               String
+  date                 DateTime
+  completedTasks       Int
+  totalTasks           Int
+  completionPercentage Decimal  @db.Decimal(5, 2)
+  completed            Boolean
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  task                 Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    date DateTime
-    completedTasks Int 
-    totalTasks Int
-    completionPercentage Decimal @db.Decimal(5,2)
-    completed Boolean
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  @@unique([activityId, userId, date])
+  @@index([activityId])
+  @@index([userId])
+}
 
-    task        Activity @relation(fields: [activityId],references: [id],onDelete: Cascade)
-    user        User @relation(fields: [userId],references: [id],onDelete: Cascade)
-
-    @@unique([activityId,userId,date])
-    @@index([activityId])
-    @@index([userId])
-
+enum TaskType {
+  VALUE
+  CHECKLIST
+  DOWN
+  QUIZ
 }

@@ -1,99 +1,93 @@
 model User {
-    id                    String                  @id @default(uuid())
-    name                  String
-    username              String                  @unique
-    email                 String                  @unique
-    password              String
-    avatar                String
-    createdAt             DateTime                @default(now())
-    updatedAt             DateTime                @updatedAt
-    globalRole            GlobalRole @default(USER)
-    isActive              Boolean                 @default(true)
-    notification          Notification[]
-    progress              TaskProgress[]
-    activity              ActivityMember[]
-    messages              Message[]
-    sentInvitations       ActivityInvitation[]    @relation("InvitationSender")
-    receivedInvitations   ActivityInvitation[]    @relation("InvitationReceiver")
-    createdActivities     Activity[]              @relation("ActivityCreator")
-    createdTasks          ActivityTask[]          @relation("TaskCreator")
-    sentRequests          Friendship[]            @relation("FriendRequester")
-    receivedRequests      Friendship[]            @relation("FriendReceiver")
-    profile               UserProfile?            
-    achievements          UserAchievement[]
-    sessions              Session[]
-    passwordResets        PasswordReset[]
-    ActivityDailyProgress ActivityDailyProgress[]
+  id                    String                  @id @default(uuid())
+  name                  String?
+  username              String?                  @unique
+  email                 String?                  @unique
+  password              String?
+  avatar                String?
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  globalRole            GlobalRole              @default(USER)
+  isActive              Boolean                 @default(true)
+  googleId              String? @unique
 
-    @@index([email])
-    @@index([username])
+  createdActivities     Activity[]              @relation("ActivityCreator")
+  ActivityDailyProgress ActivityDailyProgress[]
+  receivedInvitations   ActivityInvitation[]    @relation("InvitationReceiver")
+  sentInvitations       ActivityInvitation[]    @relation("InvitationSender")
+  activity              ActivityMember[]
+  createdTasks          ActivityTask[]          @relation("TaskCreator")
+  receivedRequests      Friendship[]            @relation("FriendReceiver")
+  sentRequests          Friendship[]            @relation("FriendRequester")
+  messages              Message[]
+  notification          Notification[]
+  passwordResets        PasswordReset[]
+  sessions              Session[]
+  progress              TaskProgress[]
+  profile               UserProfile?
+  achievements          UserTaskAchievement[]
+  chats                 ChatConversation[]
+  websiteUsage          WebsiteUsage[]
+
+  @@index([email])
+  @@index([username])
 }
 
 model Session {
-    id               String    @id @default(uuid())
-    userId           String
-    refreshTokenHash String
-    expiresAt        DateTime
-    deviceName       String?
-    ipAdress         String?
-    userAgent        String?
-    revokedAt        DateTime?
-    createdAt        DateTime  @default(now())
-    lastUsedAt       DateTime  @updatedAt
+  id               String    @id @default(uuid())
+  userId           String
+  refreshTokenHash String    @unique
+  expiresAt        DateTime
+  deviceName       String?
+  ipAdress         String?
+  userAgent        String?
+  revokedAt        DateTime?
+  createdAt        DateTime  @default(now())
+  lastUsedAt       DateTime  @updatedAt
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  websiteUsage     WebsiteUsage[]
 
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@index([userId])
+  @@index([userId])
 }
 
 model UserProfile {
-    id String @id @default(uuid())
-
-    userId String @unique
-
-    firstName String?
-
-    lastName String?
-
-    bio String?
-
-    avatarUrl String?
-
-    birthDate DateTime?
-
-    createdAt DateTime @default(now())
-
-    updatedAt DateTime @updatedAt
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String    @id @default(uuid())
+  userId    String    @unique
+  firstName String?
+  lastName  String?
+  bio       String?
+  avatarUrl String?
+  birthDate DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Friendship {
-    id          String           @id @default(uuid())
-    requesterId String
-    receiverId  String
-    status      FriendshipStatus
-    createdAt   DateTime         @default(now())
-    updatedAt   DateTime         @updatedAt
-    requester   User             @relation("FriendRequester", fields: [requesterId], references: [id], onDelete: Cascade)
-    receiver    User             @relation("FriendReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  id          String           @id @default(uuid())
+  requesterId String
+  receiverId  String
+  status      FriendshipStatus
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  receiver    User             @relation("FriendReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  requester   User             @relation("FriendRequester", fields: [requesterId], references: [id], onDelete: Cascade)
 
-    @@unique([requesterId, receiverId])
-    @@index([requesterId])
-    @@index([receiverId])
-    @@index([status])
+  @@unique([requesterId, receiverId])
+  @@index([requesterId])
+  @@index([receiverId])
+  @@index([status])
 }
 
 model PasswordReset {
-    id        String    @id @default(uuid())
-    userId    String
-    tokenHash String
-    usedAt    DateTime?
-    createdAt DateTime  @default(now())
-    expiresAt DateTime
+  id        String    @id @default(uuid())
+  userId    String
+  tokenHash String
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@index([userId])
-    @@index([expiresAt])
+  @@index([userId])
+  @@index([expiresAt])
 }

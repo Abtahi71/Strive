@@ -13,20 +13,30 @@
  * 🟢 You can import this file directly.
  */
 
-import * as Prisma from './internal/prismaNamespaceBrowser.js'
+import * as Prisma from './internal/prismaNamespaceBrowser'
 export { Prisma }
-export * as $Enums from './enums.js'
-export * from './enums.js';
+export * as $Enums from './enums'
+export * from './enums';
 /**
- * Model Achievement
+ * Model ChatConversation
  * 
  */
-export type Achievement = Prisma.AchievementModel
+export type ChatConversation = Prisma.ChatConversationModel
 /**
- * Model UserAchievement
+ * Model ChatMessage
  * 
  */
-export type UserAchievement = Prisma.UserAchievementModel
+export type ChatMessage = Prisma.ChatMessageModel
+/**
+ * Model TaskAchievement
+ * 
+ */
+export type TaskAchievement = Prisma.TaskAchievementModel
+/**
+ * Model UserTaskAchievement
+ * 
+ */
+export type UserTaskAchievement = Prisma.UserTaskAchievementModel
 /**
  * Model Activity
  * 
@@ -42,6 +52,11 @@ export type ActivityMember = Prisma.ActivityMemberModel
  * 
  */
 export type ActivityInvitation = Prisma.ActivityInvitationModel
+/**
+ * Model Quiz
+ * 
+ */
+export type Quiz = Prisma.QuizModel
 /**
  * Model ActivityTask
  * 
@@ -108,7 +123,17 @@ export type Message = Prisma.MessageModel
  */
 export type Attachment = Prisma.AttachmentModel
 /**
+ * Model knowledge_chunks
+ * 
+ */
+export type knowledge_chunks = Prisma.knowledge_chunksModel
+/**
  * Model Notification
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model WebsiteUsage
+ * 
+ */
+export type WebsiteUsage = Prisma.WebsiteUsageModel

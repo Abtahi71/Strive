@@ -9,6 +9,36 @@
 * 🟢 You can import this file directly.
 */
 
+export const ChatMessageRole = {
+  USER: 'USER',
+  ASSISTANT: 'ASSISTANT',
+  TOOL: 'TOOL'
+} as const
+
+export type ChatMessageRole = (typeof ChatMessageRole)[keyof typeof ChatMessageRole]
+
+
+export const IconType = {
+  DEFAULT: 'DEFAULT',
+  ICON: 'ICON',
+  PREBUILT: 'PREBUILT',
+  CUSTOM: 'CUSTOM',
+  EMOJI: 'EMOJI'
+} as const
+
+export type IconType = (typeof IconType)[keyof typeof IconType]
+
+
+export const TaskType = {
+  VALUE: 'VALUE',
+  CHECKLIST: 'CHECKLIST',
+  DOWN: 'DOWN',
+  QUIZ: 'QUIZ'
+} as const
+
+export type TaskType = (typeof TaskType)[keyof typeof TaskType]
+
+
 export const GlobalRole = {
   SUPERADMIN: 'SUPERADMIN',
   USER: 'USER'

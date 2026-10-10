@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model TaskProgress
@@ -29,11 +29,15 @@ export type AggregateTaskProgress = {
 export type TaskProgressAvgAggregateOutputType = {
   completedValue: runtime.Decimal | null
   targetSnapshot: runtime.Decimal | null
+  currentStreak: number | null
+  longestStreak: number | null
 }
 
 export type TaskProgressSumAggregateOutputType = {
   completedValue: runtime.Decimal | null
   targetSnapshot: runtime.Decimal | null
+  currentStreak: number | null
+  longestStreak: number | null
 }
 
 export type TaskProgressMinAggregateOutputType = {
@@ -47,6 +51,8 @@ export type TaskProgressMinAggregateOutputType = {
   isCompleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  currentStreak: number | null
+  longestStreak: number | null
 }
 
 export type TaskProgressMaxAggregateOutputType = {
@@ -60,6 +66,8 @@ export type TaskProgressMaxAggregateOutputType = {
   isCompleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  currentStreak: number | null
+  longestStreak: number | null
 }
 
 export type TaskProgressCountAggregateOutputType = {
@@ -73,6 +81,8 @@ export type TaskProgressCountAggregateOutputType = {
   isCompleted: number
   createdAt: number
   updatedAt: number
+  currentStreak: number
+  longestStreak: number
   _all: number
 }
 
@@ -80,11 +90,15 @@ export type TaskProgressCountAggregateOutputType = {
 export type TaskProgressAvgAggregateInputType = {
   completedValue?: true
   targetSnapshot?: true
+  currentStreak?: true
+  longestStreak?: true
 }
 
 export type TaskProgressSumAggregateInputType = {
   completedValue?: true
   targetSnapshot?: true
+  currentStreak?: true
+  longestStreak?: true
 }
 
 export type TaskProgressMinAggregateInputType = {
@@ -98,6 +112,8 @@ export type TaskProgressMinAggregateInputType = {
   isCompleted?: true
   createdAt?: true
   updatedAt?: true
+  currentStreak?: true
+  longestStreak?: true
 }
 
 export type TaskProgressMaxAggregateInputType = {
@@ -111,6 +127,8 @@ export type TaskProgressMaxAggregateInputType = {
   isCompleted?: true
   createdAt?: true
   updatedAt?: true
+  currentStreak?: true
+  longestStreak?: true
 }
 
 export type TaskProgressCountAggregateInputType = {
@@ -124,6 +142,8 @@ export type TaskProgressCountAggregateInputType = {
   isCompleted?: true
   createdAt?: true
   updatedAt?: true
+  currentStreak?: true
+  longestStreak?: true
   _all?: true
 }
 
@@ -224,6 +244,8 @@ export type TaskProgressGroupByOutputType = {
   isCompleted: boolean
   createdAt: Date
   updatedAt: Date
+  currentStreak: number
+  longestStreak: number
   _count: TaskProgressCountAggregateOutputType | null
   _avg: TaskProgressAvgAggregateOutputType | null
   _sum: TaskProgressSumAggregateOutputType | null
@@ -260,6 +282,8 @@ export type TaskProgressWhereInput = {
   isCompleted?: Prisma.BoolFilter<"TaskProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
+  currentStreak?: Prisma.IntFilter<"TaskProgress"> | number
+  longestStreak?: Prisma.IntFilter<"TaskProgress"> | number
   task?: Prisma.XOR<Prisma.ActivityTaskScalarRelationFilter, Prisma.ActivityTaskWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   entries?: Prisma.TaskProgressEntryListRelationFilter
@@ -276,6 +300,8 @@ export type TaskProgressOrderByWithRelationInput = {
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
   task?: Prisma.ActivityTaskOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
   entries?: Prisma.TaskProgressEntryOrderByRelationAggregateInput
@@ -296,6 +322,8 @@ export type TaskProgressWhereUniqueInput = Prisma.AtLeast<{
   isCompleted?: Prisma.BoolFilter<"TaskProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
+  currentStreak?: Prisma.IntFilter<"TaskProgress"> | number
+  longestStreak?: Prisma.IntFilter<"TaskProgress"> | number
   task?: Prisma.XOR<Prisma.ActivityTaskScalarRelationFilter, Prisma.ActivityTaskWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   entries?: Prisma.TaskProgressEntryListRelationFilter
@@ -312,6 +340,8 @@ export type TaskProgressOrderByWithAggregationInput = {
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
   _count?: Prisma.TaskProgressCountOrderByAggregateInput
   _avg?: Prisma.TaskProgressAvgOrderByAggregateInput
   _max?: Prisma.TaskProgressMaxOrderByAggregateInput
@@ -333,6 +363,8 @@ export type TaskProgressScalarWhereWithAggregatesInput = {
   isCompleted?: Prisma.BoolWithAggregatesFilter<"TaskProgress"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TaskProgress"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TaskProgress"> | Date | string
+  currentStreak?: Prisma.IntWithAggregatesFilter<"TaskProgress"> | number
+  longestStreak?: Prisma.IntWithAggregatesFilter<"TaskProgress"> | number
 }
 
 export type TaskProgressCreateInput = {
@@ -344,6 +376,8 @@ export type TaskProgressCreateInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   task: Prisma.ActivityTaskCreateNestedOneWithoutProgressInput
   user: Prisma.UserCreateNestedOneWithoutProgressInput
   entries?: Prisma.TaskProgressEntryCreateNestedManyWithoutProgressInput
@@ -360,6 +394,8 @@ export type TaskProgressUncheckedCreateInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   entries?: Prisma.TaskProgressEntryUncheckedCreateNestedManyWithoutProgressInput
 }
 
@@ -372,6 +408,8 @@ export type TaskProgressUpdateInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.ActivityTaskUpdateOneRequiredWithoutProgressNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProgressNestedInput
   entries?: Prisma.TaskProgressEntryUpdateManyWithoutProgressNestedInput
@@ -388,6 +426,8 @@ export type TaskProgressUncheckedUpdateInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   entries?: Prisma.TaskProgressEntryUncheckedUpdateManyWithoutProgressNestedInput
 }
 
@@ -402,6 +442,8 @@ export type TaskProgressCreateManyInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
 }
 
 export type TaskProgressUpdateManyMutationInput = {
@@ -413,6 +455,8 @@ export type TaskProgressUpdateManyMutationInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TaskProgressUncheckedUpdateManyInput = {
@@ -426,6 +470,8 @@ export type TaskProgressUncheckedUpdateManyInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TaskProgressListRelationFilter = {
@@ -455,11 +501,15 @@ export type TaskProgressCountOrderByAggregateInput = {
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
 }
 
 export type TaskProgressAvgOrderByAggregateInput = {
   completedValue?: Prisma.SortOrder
   targetSnapshot?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
 }
 
 export type TaskProgressMaxOrderByAggregateInput = {
@@ -473,6 +523,8 @@ export type TaskProgressMaxOrderByAggregateInput = {
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
 }
 
 export type TaskProgressMinOrderByAggregateInput = {
@@ -486,11 +538,15 @@ export type TaskProgressMinOrderByAggregateInput = {
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
 }
 
 export type TaskProgressSumOrderByAggregateInput = {
   completedValue?: Prisma.SortOrder
   targetSnapshot?: Prisma.SortOrder
+  currentStreak?: Prisma.SortOrder
+  longestStreak?: Prisma.SortOrder
 }
 
 export type TaskProgressScalarRelationFilter = {
@@ -613,6 +669,8 @@ export type TaskProgressCreateWithoutTaskInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   user: Prisma.UserCreateNestedOneWithoutProgressInput
   entries?: Prisma.TaskProgressEntryCreateNestedManyWithoutProgressInput
 }
@@ -627,6 +685,8 @@ export type TaskProgressUncheckedCreateWithoutTaskInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   entries?: Prisma.TaskProgressEntryUncheckedCreateNestedManyWithoutProgressInput
 }
 
@@ -670,6 +730,8 @@ export type TaskProgressScalarWhereInput = {
   isCompleted?: Prisma.BoolFilter<"TaskProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TaskProgress"> | Date | string
+  currentStreak?: Prisma.IntFilter<"TaskProgress"> | number
+  longestStreak?: Prisma.IntFilter<"TaskProgress"> | number
 }
 
 export type TaskProgressCreateWithoutEntriesInput = {
@@ -681,6 +743,8 @@ export type TaskProgressCreateWithoutEntriesInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   task: Prisma.ActivityTaskCreateNestedOneWithoutProgressInput
   user: Prisma.UserCreateNestedOneWithoutProgressInput
 }
@@ -696,6 +760,8 @@ export type TaskProgressUncheckedCreateWithoutEntriesInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
 }
 
 export type TaskProgressCreateOrConnectWithoutEntriesInput = {
@@ -723,6 +789,8 @@ export type TaskProgressUpdateWithoutEntriesInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.ActivityTaskUpdateOneRequiredWithoutProgressNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProgressNestedInput
 }
@@ -738,6 +806,8 @@ export type TaskProgressUncheckedUpdateWithoutEntriesInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TaskProgressCreateWithoutUserInput = {
@@ -749,6 +819,8 @@ export type TaskProgressCreateWithoutUserInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   task: Prisma.ActivityTaskCreateNestedOneWithoutProgressInput
   entries?: Prisma.TaskProgressEntryCreateNestedManyWithoutProgressInput
 }
@@ -763,6 +835,8 @@ export type TaskProgressUncheckedCreateWithoutUserInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
   entries?: Prisma.TaskProgressEntryUncheckedCreateNestedManyWithoutProgressInput
 }
 
@@ -802,6 +876,8 @@ export type TaskProgressCreateManyTaskInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
 }
 
 export type TaskProgressUpdateWithoutTaskInput = {
@@ -813,6 +889,8 @@ export type TaskProgressUpdateWithoutTaskInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutProgressNestedInput
   entries?: Prisma.TaskProgressEntryUpdateManyWithoutProgressNestedInput
 }
@@ -827,6 +905,8 @@ export type TaskProgressUncheckedUpdateWithoutTaskInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   entries?: Prisma.TaskProgressEntryUncheckedUpdateManyWithoutProgressNestedInput
 }
 
@@ -840,6 +920,8 @@ export type TaskProgressUncheckedUpdateManyWithoutTaskInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TaskProgressCreateManyUserInput = {
@@ -852,6 +934,8 @@ export type TaskProgressCreateManyUserInput = {
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currentStreak?: number
+  longestStreak?: number
 }
 
 export type TaskProgressUpdateWithoutUserInput = {
@@ -863,6 +947,8 @@ export type TaskProgressUpdateWithoutUserInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.ActivityTaskUpdateOneRequiredWithoutProgressNestedInput
   entries?: Prisma.TaskProgressEntryUpdateManyWithoutProgressNestedInput
 }
@@ -877,6 +963,8 @@ export type TaskProgressUncheckedUpdateWithoutUserInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   entries?: Prisma.TaskProgressEntryUncheckedUpdateManyWithoutProgressNestedInput
 }
 
@@ -890,6 +978,8 @@ export type TaskProgressUncheckedUpdateManyWithoutUserInput = {
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currentStreak?: Prisma.IntFieldUpdateOperationsInput | number
+  longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -934,6 +1024,8 @@ export type TaskProgressSelect<ExtArgs extends runtime.Types.Extensions.Internal
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currentStreak?: boolean
+  longestStreak?: boolean
   task?: boolean | Prisma.ActivityTaskDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entries?: boolean | Prisma.TaskProgress$entriesArgs<ExtArgs>
@@ -951,6 +1043,8 @@ export type TaskProgressSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currentStreak?: boolean
+  longestStreak?: boolean
   task?: boolean | Prisma.ActivityTaskDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["taskProgress"]>
@@ -966,6 +1060,8 @@ export type TaskProgressSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currentStreak?: boolean
+  longestStreak?: boolean
   task?: boolean | Prisma.ActivityTaskDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["taskProgress"]>
@@ -981,9 +1077,11 @@ export type TaskProgressSelectScalar = {
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currentStreak?: boolean
+  longestStreak?: boolean
 }
 
-export type TaskProgressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activityId" | "taskId" | "userId" | "date" | "completedValue" | "targetSnapshot" | "isCompleted" | "createdAt" | "updatedAt", ExtArgs["result"]["taskProgress"]>
+export type TaskProgressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activityId" | "taskId" | "userId" | "date" | "completedValue" | "targetSnapshot" | "isCompleted" | "createdAt" | "updatedAt" | "currentStreak" | "longestStreak", ExtArgs["result"]["taskProgress"]>
 export type TaskProgressInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task?: boolean | Prisma.ActivityTaskDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1017,6 +1115,8 @@ export type $TaskProgressPayload<ExtArgs extends runtime.Types.Extensions.Intern
     isCompleted: boolean
     createdAt: Date
     updatedAt: Date
+    currentStreak: number
+    longestStreak: number
   }, ExtArgs["result"]["taskProgress"]>
   composites: {}
 }
@@ -1453,6 +1553,8 @@ export interface TaskProgressFieldRefs {
   readonly isCompleted: Prisma.FieldRef<"TaskProgress", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"TaskProgress", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TaskProgress", 'DateTime'>
+  readonly currentStreak: Prisma.FieldRef<"TaskProgress", 'Int'>
+  readonly longestStreak: Prisma.FieldRef<"TaskProgress", 'Int'>
 }
     
 

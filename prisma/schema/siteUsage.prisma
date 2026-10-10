@@ -1,0 +1,20 @@
+model WebsiteUsage {
+  id          String   @id @default(uuid())
+  userId      String
+  sessionId   String
+
+  domain      String
+  startedAt   DateTime
+  endedAt     DateTime?
+  durationSec Int
+
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session     Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startedAt])
+  @@index([userId, domain])
+  @@index([sessionId])
+  @@index([domain])
+}

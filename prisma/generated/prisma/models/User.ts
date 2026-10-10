@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model User
@@ -35,6 +35,7 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   globalRole: $Enums.GlobalRole | null
   isActive: boolean | null
+  googleId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   globalRole: $Enums.GlobalRole | null
   isActive: boolean | null
+  googleId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -61,6 +63,7 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   globalRole: number
   isActive: number
+  googleId: number
   _all: number
 }
 
@@ -76,6 +79,7 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   globalRole?: true
   isActive?: true
+  googleId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -89,6 +93,7 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   globalRole?: true
   isActive?: true
+  googleId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -102,6 +107,7 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   globalRole?: true
   isActive?: true
+  googleId?: true
   _all?: true
 }
 
@@ -179,15 +185,16 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name: string | null
+  username: string | null
+  email: string | null
+  password: string | null
+  avatar: string | null
   createdAt: Date
   updatedAt: Date
   globalRole: $Enums.GlobalRole
   isActive: boolean
+  googleId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -213,102 +220,112 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringFilter<"User"> | string
-  username?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  avatar?: Prisma.StringFilter<"User"> | string
+  name?: Prisma.StringNullableFilter<"User"> | string | null
+  username?: Prisma.StringNullableFilter<"User"> | string | null
+  email?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   globalRole?: Prisma.EnumGlobalRoleFilter<"User"> | $Enums.GlobalRole
   isActive?: Prisma.BoolFilter<"User"> | boolean
-  notification?: Prisma.NotificationListRelationFilter
-  progress?: Prisma.TaskProgressListRelationFilter
-  activity?: Prisma.ActivityMemberListRelationFilter
-  messages?: Prisma.MessageListRelationFilter
-  sentInvitations?: Prisma.ActivityInvitationListRelationFilter
-  receivedInvitations?: Prisma.ActivityInvitationListRelationFilter
+  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   createdActivities?: Prisma.ActivityListRelationFilter
-  createdTasks?: Prisma.ActivityTaskListRelationFilter
-  sentRequests?: Prisma.FriendshipListRelationFilter
-  receivedRequests?: Prisma.FriendshipListRelationFilter
-  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
-  achievements?: Prisma.UserAchievementListRelationFilter
-  sessions?: Prisma.SessionListRelationFilter
-  passwordResets?: Prisma.PasswordResetListRelationFilter
   ActivityDailyProgress?: Prisma.ActivityDailyProgressListRelationFilter
+  receivedInvitations?: Prisma.ActivityInvitationListRelationFilter
+  sentInvitations?: Prisma.ActivityInvitationListRelationFilter
+  activity?: Prisma.ActivityMemberListRelationFilter
+  createdTasks?: Prisma.ActivityTaskListRelationFilter
+  receivedRequests?: Prisma.FriendshipListRelationFilter
+  sentRequests?: Prisma.FriendshipListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
+  notification?: Prisma.NotificationListRelationFilter
+  passwordResets?: Prisma.PasswordResetListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
+  progress?: Prisma.TaskProgressListRelationFilter
+  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
+  achievements?: Prisma.UserTaskAchievementListRelationFilter
+  chats?: Prisma.ChatConversationListRelationFilter
+  websiteUsage?: Prisma.WebsiteUsageListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  username?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   globalRole?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  notification?: Prisma.NotificationOrderByRelationAggregateInput
-  progress?: Prisma.TaskProgressOrderByRelationAggregateInput
-  activity?: Prisma.ActivityMemberOrderByRelationAggregateInput
-  messages?: Prisma.MessageOrderByRelationAggregateInput
-  sentInvitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
-  receivedInvitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdActivities?: Prisma.ActivityOrderByRelationAggregateInput
-  createdTasks?: Prisma.ActivityTaskOrderByRelationAggregateInput
-  sentRequests?: Prisma.FriendshipOrderByRelationAggregateInput
-  receivedRequests?: Prisma.FriendshipOrderByRelationAggregateInput
-  profile?: Prisma.UserProfileOrderByWithRelationInput
-  achievements?: Prisma.UserAchievementOrderByRelationAggregateInput
-  sessions?: Prisma.SessionOrderByRelationAggregateInput
-  passwordResets?: Prisma.PasswordResetOrderByRelationAggregateInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressOrderByRelationAggregateInput
+  receivedInvitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
+  sentInvitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
+  activity?: Prisma.ActivityMemberOrderByRelationAggregateInput
+  createdTasks?: Prisma.ActivityTaskOrderByRelationAggregateInput
+  receivedRequests?: Prisma.FriendshipOrderByRelationAggregateInput
+  sentRequests?: Prisma.FriendshipOrderByRelationAggregateInput
+  messages?: Prisma.MessageOrderByRelationAggregateInput
+  notification?: Prisma.NotificationOrderByRelationAggregateInput
+  passwordResets?: Prisma.PasswordResetOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
+  progress?: Prisma.TaskProgressOrderByRelationAggregateInput
+  profile?: Prisma.UserProfileOrderByWithRelationInput
+  achievements?: Prisma.UserTaskAchievementOrderByRelationAggregateInput
+  chats?: Prisma.ChatConversationOrderByRelationAggregateInput
+  websiteUsage?: Prisma.WebsiteUsageOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   username?: string
   email?: string
+  googleId?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  name?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  avatar?: Prisma.StringFilter<"User"> | string
+  name?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   globalRole?: Prisma.EnumGlobalRoleFilter<"User"> | $Enums.GlobalRole
   isActive?: Prisma.BoolFilter<"User"> | boolean
-  notification?: Prisma.NotificationListRelationFilter
-  progress?: Prisma.TaskProgressListRelationFilter
-  activity?: Prisma.ActivityMemberListRelationFilter
-  messages?: Prisma.MessageListRelationFilter
-  sentInvitations?: Prisma.ActivityInvitationListRelationFilter
-  receivedInvitations?: Prisma.ActivityInvitationListRelationFilter
   createdActivities?: Prisma.ActivityListRelationFilter
-  createdTasks?: Prisma.ActivityTaskListRelationFilter
-  sentRequests?: Prisma.FriendshipListRelationFilter
-  receivedRequests?: Prisma.FriendshipListRelationFilter
-  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
-  achievements?: Prisma.UserAchievementListRelationFilter
-  sessions?: Prisma.SessionListRelationFilter
-  passwordResets?: Prisma.PasswordResetListRelationFilter
   ActivityDailyProgress?: Prisma.ActivityDailyProgressListRelationFilter
-}, "id" | "username" | "email">
+  receivedInvitations?: Prisma.ActivityInvitationListRelationFilter
+  sentInvitations?: Prisma.ActivityInvitationListRelationFilter
+  activity?: Prisma.ActivityMemberListRelationFilter
+  createdTasks?: Prisma.ActivityTaskListRelationFilter
+  receivedRequests?: Prisma.FriendshipListRelationFilter
+  sentRequests?: Prisma.FriendshipListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
+  notification?: Prisma.NotificationListRelationFilter
+  passwordResets?: Prisma.PasswordResetListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
+  progress?: Prisma.TaskProgressListRelationFilter
+  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
+  achievements?: Prisma.UserTaskAchievementListRelationFilter
+  chats?: Prisma.ChatConversationListRelationFilter
+  websiteUsage?: Prisma.WebsiteUsageListRelationFilter
+}, "id" | "username" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  username?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   globalRole?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -319,166 +336,182 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  name?: Prisma.StringWithAggregatesFilter<"User"> | string
-  username?: Prisma.StringWithAggregatesFilter<"User"> | string
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  password?: Prisma.StringWithAggregatesFilter<"User"> | string
-  avatar?: Prisma.StringWithAggregatesFilter<"User"> | string
+  name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   globalRole?: Prisma.EnumGlobalRoleWithAggregatesFilter<"User"> | $Enums.GlobalRole
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
+  googleId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -497,6 +530,7 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   globalRole?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -510,6 +544,7 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   globalRole?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -523,6 +558,21 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   globalRole?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
+}
+
+export type UserCreateNestedOneWithoutChatsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutChatsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatsInput
+  upsert?: Prisma.UserUpsertWithoutChatsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatsInput, Prisma.UserUpdateWithoutChatsInput>, Prisma.UserUncheckedUpdateWithoutChatsInput>
 }
 
 export type UserCreateNestedOneWithoutAchievementsInput = {
@@ -567,24 +617,16 @@ export type UserUpdateOneRequiredWithoutActivityNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivityInput, Prisma.UserUpdateWithoutActivityInput>, Prisma.UserUncheckedUpdateWithoutActivityInput>
 }
 
-export type UserCreateNestedOneWithoutSentInvitationsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
 export type UserCreateNestedOneWithoutReceivedInvitationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedInvitationsInput, Prisma.UserUncheckedCreateWithoutReceivedInvitationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedInvitationsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutSentInvitationsNestedInput = {
+export type UserCreateNestedOneWithoutSentInvitationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
-  upsert?: Prisma.UserUpsertWithoutSentInvitationsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentInvitationsInput, Prisma.UserUpdateWithoutSentInvitationsInput>, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
 }
 
 export type UserUpdateOneRequiredWithoutReceivedInvitationsNestedInput = {
@@ -593,6 +635,14 @@ export type UserUpdateOneRequiredWithoutReceivedInvitationsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutReceivedInvitationsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedInvitationsInput, Prisma.UserUpdateWithoutReceivedInvitationsInput>, Prisma.UserUncheckedUpdateWithoutReceivedInvitationsInput>
+}
+
+export type UserUpdateOneRequiredWithoutSentInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
+  upsert?: Prisma.UserUpsertWithoutSentInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentInvitationsInput, Prisma.UserUpdateWithoutSentInvitationsInput>, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
 }
 
 export type UserCreateNestedOneWithoutCreatedTasksInput = {
@@ -669,24 +719,16 @@ export type UserUpdateOneRequiredWithoutProfileNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
 }
 
-export type UserCreateNestedOneWithoutSentRequestsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentRequestsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
 export type UserCreateNestedOneWithoutReceivedRequestsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedRequestsInput, Prisma.UserUncheckedCreateWithoutReceivedRequestsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedRequestsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutSentRequestsNestedInput = {
+export type UserCreateNestedOneWithoutSentRequestsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentRequestsInput
-  upsert?: Prisma.UserUpsertWithoutSentRequestsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentRequestsInput, Prisma.UserUpdateWithoutSentRequestsInput>, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
 }
 
 export type UserUpdateOneRequiredWithoutReceivedRequestsNestedInput = {
@@ -695,6 +737,14 @@ export type UserUpdateOneRequiredWithoutReceivedRequestsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutReceivedRequestsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedRequestsInput, Prisma.UserUpdateWithoutReceivedRequestsInput>, Prisma.UserUncheckedUpdateWithoutReceivedRequestsInput>
+}
+
+export type UserUpdateOneRequiredWithoutSentRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentRequestsInput
+  upsert?: Prisma.UserUpsertWithoutSentRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentRequestsInput, Prisma.UserUpdateWithoutSentRequestsInput>, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
 }
 
 export type UserCreateNestedOneWithoutPasswordResetsInput = {
@@ -739,58 +789,214 @@ export type UserUpdateOneRequiredWithoutNotificationNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationInput, Prisma.UserUpdateWithoutNotificationInput>, Prisma.UserUncheckedUpdateWithoutNotificationInput>
 }
 
-export type UserCreateWithoutAchievementsInput = {
+export type UserCreateNestedOneWithoutWebsiteUsageInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWebsiteUsageInput, Prisma.UserUncheckedCreateWithoutWebsiteUsageInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWebsiteUsageInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutWebsiteUsageNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWebsiteUsageInput, Prisma.UserUncheckedCreateWithoutWebsiteUsageInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWebsiteUsageInput
+  upsert?: Prisma.UserUpsertWithoutWebsiteUsageInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWebsiteUsageInput, Prisma.UserUpdateWithoutWebsiteUsageInput>, Prisma.UserUncheckedUpdateWithoutWebsiteUsageInput>
+}
+
+export type UserCreateWithoutChatsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutChatsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutChatsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+}
+
+export type UserUpsertWithoutChatsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutChatsInput, Prisma.UserUncheckedUpdateWithoutChatsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutChatsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutChatsInput, Prisma.UserUncheckedUpdateWithoutChatsInput>
+}
+
+export type UserUpdateWithoutChatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutChatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAchievementsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAchievementsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAchievementsInput = {
@@ -811,110 +1017,122 @@ export type UserUpdateToOneWithWhereWithoutAchievementsInput = {
 
 export type UserUpdateWithoutAchievementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAchievementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedActivitiesInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  googleId?: string | null
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedActivitiesInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedActivitiesInput = {
@@ -935,110 +1153,122 @@ export type UserUpdateToOneWithWhereWithoutCreatedActivitiesInput = {
 
 export type UserUpdateWithoutCreatedActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutActivityInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutActivityInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutActivityInput = {
@@ -1059,169 +1289,122 @@ export type UserUpdateToOneWithWhereWithoutActivityInput = {
 
 export type UserUpdateWithoutActivityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutSentInvitationsInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  globalRole?: $Enums.GlobalRole
-  isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
-  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSentInvitationsInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  globalRole?: $Enums.GlobalRole
-  isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
-  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSentInvitationsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReceivedInvitationsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedInvitationsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedInvitationsInput = {
@@ -1229,69 +1412,69 @@ export type UserCreateOrConnectWithoutReceivedInvitationsInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutReceivedInvitationsInput, Prisma.UserUncheckedCreateWithoutReceivedInvitationsInput>
 }
 
-export type UserUpsertWithoutSentInvitationsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+export type UserCreateWithoutSentInvitationsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSentInvitationsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSentInvitationsInput = {
+  where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSentInvitationsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
-}
-
-export type UserUpdateWithoutSentInvitationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
-  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSentInvitationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
-  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReceivedInvitationsInput = {
@@ -1307,110 +1490,193 @@ export type UserUpdateToOneWithWhereWithoutReceivedInvitationsInput = {
 
 export type UserUpdateWithoutReceivedInvitationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedInvitationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutSentInvitationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentInvitationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+}
+
+export type UserUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedTasksInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTasksInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -1431,110 +1697,122 @@ export type UserUpdateToOneWithWhereWithoutCreatedTasksInput = {
 
 export type UserUpdateWithoutCreatedTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -1555,110 +1833,122 @@ export type UserUpdateToOneWithWhereWithoutProgressInput = {
 
 export type UserUpdateWithoutProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutActivityDailyProgressInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
   createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
   receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
   passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutActivityDailyProgressInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
   createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
   receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutActivityDailyProgressInput = {
@@ -1679,110 +1969,122 @@ export type UserUpdateToOneWithWhereWithoutActivityDailyProgressInput = {
 
 export type UserUpdateWithoutActivityDailyProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
   createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
   receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityDailyProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
   createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
   receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1803,110 +2105,122 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -1927,169 +2241,122 @@ export type UserUpdateToOneWithWhereWithoutProfileInput = {
 
 export type UserUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutSentRequestsInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  globalRole?: $Enums.GlobalRole
-  isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
-  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSentRequestsInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  globalRole?: $Enums.GlobalRole
-  isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
-  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSentRequestsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReceivedRequestsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
   createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
   sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
   passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedRequestsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
   createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
   sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedRequestsInput = {
@@ -2097,69 +2364,69 @@ export type UserCreateOrConnectWithoutReceivedRequestsInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutReceivedRequestsInput, Prisma.UserUncheckedCreateWithoutReceivedRequestsInput>
 }
 
-export type UserUpsertWithoutSentRequestsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSentRequestsInput, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
+export type UserCreateWithoutSentRequestsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSentRequestsInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSentRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSentRequestsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSentRequestsInput, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
-}
-
-export type UserUpdateWithoutSentRequestsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
-  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSentRequestsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
-  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReceivedRequestsInput = {
@@ -2175,110 +2442,193 @@ export type UserUpdateToOneWithWhereWithoutReceivedRequestsInput = {
 
 export type UserUpdateWithoutReceivedRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
   createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
   sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
-  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
   createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
   sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutSentRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentRequestsInput, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentRequestsInput, Prisma.UserUncheckedCreateWithoutSentRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentRequestsInput, Prisma.UserUncheckedUpdateWithoutSentRequestsInput>
+}
+
+export type UserUpdateWithoutSentRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPasswordResetsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPasswordResetsInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -2299,110 +2649,122 @@ export type UserUpdateToOneWithWhereWithoutPasswordResetsInput = {
 
 export type UserUpdateWithoutPasswordResetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPasswordResetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMessagesInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesInput = {
@@ -2423,110 +2785,122 @@ export type UserUpdateToOneWithWhereWithoutMessagesInput = {
 
 export type UserUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationInput = {
   id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  avatar: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   globalRole?: $Enums.GlobalRole
   isActive?: boolean
-  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
-  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  googleId?: string | null
   createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
-  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
-  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
-  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationInput = {
@@ -2547,56 +2921,198 @@ export type UserUpdateToOneWithWhereWithoutNotificationInput = {
 
 export type UserUpdateWithoutNotificationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
-  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
-  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
-  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
-  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
-  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutWebsiteUsageInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWebsiteUsageInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutWebsiteUsageInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWebsiteUsageInput, Prisma.UserUncheckedCreateWithoutWebsiteUsageInput>
+}
+
+export type UserUpsertWithoutWebsiteUsageInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWebsiteUsageInput, Prisma.UserUncheckedUpdateWithoutWebsiteUsageInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWebsiteUsageInput, Prisma.UserUncheckedCreateWithoutWebsiteUsageInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWebsiteUsageInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWebsiteUsageInput, Prisma.UserUncheckedUpdateWithoutWebsiteUsageInput>
+}
+
+export type UserUpdateWithoutWebsiteUsageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWebsiteUsageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2605,37 +3121,41 @@ export type UserUncheckedUpdateWithoutNotificationInput = {
  */
 
 export type UserCountOutputType = {
-  notification: number
-  progress: number
-  activity: number
-  messages: number
-  sentInvitations: number
-  receivedInvitations: number
   createdActivities: number
-  createdTasks: number
-  sentRequests: number
-  receivedRequests: number
-  achievements: number
-  sessions: number
-  passwordResets: number
   ActivityDailyProgress: number
+  receivedInvitations: number
+  sentInvitations: number
+  activity: number
+  createdTasks: number
+  receivedRequests: number
+  sentRequests: number
+  messages: number
+  notification: number
+  passwordResets: number
+  sessions: number
+  progress: number
+  achievements: number
+  chats: number
+  websiteUsage: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  notification?: boolean | UserCountOutputTypeCountNotificationArgs
-  progress?: boolean | UserCountOutputTypeCountProgressArgs
-  activity?: boolean | UserCountOutputTypeCountActivityArgs
-  messages?: boolean | UserCountOutputTypeCountMessagesArgs
-  sentInvitations?: boolean | UserCountOutputTypeCountSentInvitationsArgs
-  receivedInvitations?: boolean | UserCountOutputTypeCountReceivedInvitationsArgs
   createdActivities?: boolean | UserCountOutputTypeCountCreatedActivitiesArgs
-  createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
-  sentRequests?: boolean | UserCountOutputTypeCountSentRequestsArgs
-  receivedRequests?: boolean | UserCountOutputTypeCountReceivedRequestsArgs
-  achievements?: boolean | UserCountOutputTypeCountAchievementsArgs
-  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-  passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
   ActivityDailyProgress?: boolean | UserCountOutputTypeCountActivityDailyProgressArgs
+  receivedInvitations?: boolean | UserCountOutputTypeCountReceivedInvitationsArgs
+  sentInvitations?: boolean | UserCountOutputTypeCountSentInvitationsArgs
+  activity?: boolean | UserCountOutputTypeCountActivityArgs
+  createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
+  receivedRequests?: boolean | UserCountOutputTypeCountReceivedRequestsArgs
+  sentRequests?: boolean | UserCountOutputTypeCountSentRequestsArgs
+  messages?: boolean | UserCountOutputTypeCountMessagesArgs
+  notification?: boolean | UserCountOutputTypeCountNotificationArgs
+  passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
+  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  progress?: boolean | UserCountOutputTypeCountProgressArgs
+  achievements?: boolean | UserCountOutputTypeCountAchievementsArgs
+  chats?: boolean | UserCountOutputTypeCountChatsArgs
+  websiteUsage?: boolean | UserCountOutputTypeCountWebsiteUsageArgs
 }
 
 /**
@@ -2651,36 +3171,15 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountNotificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationWhereInput
+export type UserCountOutputTypeCountCreatedActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TaskProgressWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountActivityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityMemberWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MessageWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityInvitationWhereInput
+export type UserCountOutputTypeCountActivityDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityDailyProgressWhereInput
 }
 
 /**
@@ -2693,8 +3192,15 @@ export type UserCountOutputTypeCountReceivedInvitationsArgs<ExtArgs extends runt
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCreatedActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityWhereInput
+export type UserCountOutputTypeCountSentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityInvitationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountActivityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityMemberWhereInput
 }
 
 /**
@@ -2707,13 +3213,6 @@ export type UserCountOutputTypeCountCreatedTasksArgs<ExtArgs extends runtime.Typ
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSentRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.FriendshipWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountReceivedRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FriendshipWhereInput
 }
@@ -2721,15 +3220,22 @@ export type UserCountOutputTypeCountReceivedRequestsArgs<ExtArgs extends runtime
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserAchievementWhereInput
+export type UserCountOutputTypeCountSentRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FriendshipWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SessionWhereInput
+export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
 }
 
 /**
@@ -2742,8 +3248,36 @@ export type UserCountOutputTypeCountPasswordResetsArgs<ExtArgs extends runtime.T
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountActivityDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityDailyProgressWhereInput
+export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskProgressWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserTaskAchievementWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountChatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatConversationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWebsiteUsageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WebsiteUsageWhereInput
 }
 
 
@@ -2758,21 +3292,24 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   globalRole?: boolean
   isActive?: boolean
-  notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
-  progress?: boolean | Prisma.User$progressArgs<ExtArgs>
-  activity?: boolean | Prisma.User$activityArgs<ExtArgs>
-  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
-  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
-  receivedInvitations?: boolean | Prisma.User$receivedInvitationsArgs<ExtArgs>
+  googleId?: boolean
   createdActivities?: boolean | Prisma.User$createdActivitiesArgs<ExtArgs>
+  ActivityDailyProgress?: boolean | Prisma.User$ActivityDailyProgressArgs<ExtArgs>
+  receivedInvitations?: boolean | Prisma.User$receivedInvitationsArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
+  activity?: boolean | Prisma.User$activityArgs<ExtArgs>
   createdTasks?: boolean | Prisma.User$createdTasksArgs<ExtArgs>
-  sentRequests?: boolean | Prisma.User$sentRequestsArgs<ExtArgs>
   receivedRequests?: boolean | Prisma.User$receivedRequestsArgs<ExtArgs>
+  sentRequests?: boolean | Prisma.User$sentRequestsArgs<ExtArgs>
+  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
+  notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
+  passwordResets?: boolean | Prisma.User$passwordResetsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  progress?: boolean | Prisma.User$progressArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  passwordResets?: boolean | Prisma.User$passwordResetsArgs<ExtArgs>
-  ActivityDailyProgress?: boolean | Prisma.User$ActivityDailyProgressArgs<ExtArgs>
+  chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
+  websiteUsage?: boolean | Prisma.User$websiteUsageArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2787,6 +3324,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   globalRole?: boolean
   isActive?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2800,6 +3338,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   globalRole?: boolean
   isActive?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -2813,25 +3352,28 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   globalRole?: boolean
   isActive?: boolean
+  googleId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "avatar" | "createdAt" | "updatedAt" | "globalRole" | "isActive", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "avatar" | "createdAt" | "updatedAt" | "globalRole" | "isActive" | "googleId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
-  progress?: boolean | Prisma.User$progressArgs<ExtArgs>
-  activity?: boolean | Prisma.User$activityArgs<ExtArgs>
-  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
-  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
-  receivedInvitations?: boolean | Prisma.User$receivedInvitationsArgs<ExtArgs>
   createdActivities?: boolean | Prisma.User$createdActivitiesArgs<ExtArgs>
+  ActivityDailyProgress?: boolean | Prisma.User$ActivityDailyProgressArgs<ExtArgs>
+  receivedInvitations?: boolean | Prisma.User$receivedInvitationsArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
+  activity?: boolean | Prisma.User$activityArgs<ExtArgs>
   createdTasks?: boolean | Prisma.User$createdTasksArgs<ExtArgs>
-  sentRequests?: boolean | Prisma.User$sentRequestsArgs<ExtArgs>
   receivedRequests?: boolean | Prisma.User$receivedRequestsArgs<ExtArgs>
+  sentRequests?: boolean | Prisma.User$sentRequestsArgs<ExtArgs>
+  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
+  notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
+  passwordResets?: boolean | Prisma.User$passwordResetsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  progress?: boolean | Prisma.User$progressArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  passwordResets?: boolean | Prisma.User$passwordResetsArgs<ExtArgs>
-  ActivityDailyProgress?: boolean | Prisma.User$ActivityDailyProgressArgs<ExtArgs>
+  chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
+  websiteUsage?: boolean | Prisma.User$websiteUsageArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2840,33 +3382,36 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    notification: Prisma.$NotificationPayload<ExtArgs>[]
-    progress: Prisma.$TaskProgressPayload<ExtArgs>[]
-    activity: Prisma.$ActivityMemberPayload<ExtArgs>[]
-    messages: Prisma.$MessagePayload<ExtArgs>[]
-    sentInvitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
-    receivedInvitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
     createdActivities: Prisma.$ActivityPayload<ExtArgs>[]
-    createdTasks: Prisma.$ActivityTaskPayload<ExtArgs>[]
-    sentRequests: Prisma.$FriendshipPayload<ExtArgs>[]
-    receivedRequests: Prisma.$FriendshipPayload<ExtArgs>[]
-    profile: Prisma.$UserProfilePayload<ExtArgs> | null
-    achievements: Prisma.$UserAchievementPayload<ExtArgs>[]
-    sessions: Prisma.$SessionPayload<ExtArgs>[]
-    passwordResets: Prisma.$PasswordResetPayload<ExtArgs>[]
     ActivityDailyProgress: Prisma.$ActivityDailyProgressPayload<ExtArgs>[]
+    receivedInvitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
+    sentInvitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
+    activity: Prisma.$ActivityMemberPayload<ExtArgs>[]
+    createdTasks: Prisma.$ActivityTaskPayload<ExtArgs>[]
+    receivedRequests: Prisma.$FriendshipPayload<ExtArgs>[]
+    sentRequests: Prisma.$FriendshipPayload<ExtArgs>[]
+    messages: Prisma.$MessagePayload<ExtArgs>[]
+    notification: Prisma.$NotificationPayload<ExtArgs>[]
+    passwordResets: Prisma.$PasswordResetPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
+    progress: Prisma.$TaskProgressPayload<ExtArgs>[]
+    profile: Prisma.$UserProfilePayload<ExtArgs> | null
+    achievements: Prisma.$UserTaskAchievementPayload<ExtArgs>[]
+    chats: Prisma.$ChatConversationPayload<ExtArgs>[]
+    websiteUsage: Prisma.$WebsiteUsagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
-    username: string
-    email: string
-    password: string
-    avatar: string
+    name: string | null
+    username: string | null
+    email: string | null
+    password: string | null
+    avatar: string | null
     createdAt: Date
     updatedAt: Date
     globalRole: $Enums.GlobalRole
     isActive: boolean
+    googleId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3261,21 +3806,23 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  notification<T extends Prisma.User$notificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  activity<T extends Prisma.User$activityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sentInvitations<T extends Prisma.User$sentInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  receivedInvitations<T extends Prisma.User$receivedInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdActivities<T extends Prisma.User$createdActivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  createdTasks<T extends Prisma.User$createdTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sentRequests<T extends Prisma.User$sentRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FriendshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  receivedRequests<T extends Prisma.User$receivedRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FriendshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__UserProfileClient<runtime.Types.Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  achievements<T extends Prisma.User$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  passwordResets<T extends Prisma.User$passwordResetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PasswordResetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ActivityDailyProgress<T extends Prisma.User$ActivityDailyProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ActivityDailyProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityDailyProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receivedInvitations<T extends Prisma.User$receivedInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentInvitations<T extends Prisma.User$sentInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activity<T extends Prisma.User$activityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdTasks<T extends Prisma.User$createdTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receivedRequests<T extends Prisma.User$receivedRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FriendshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentRequests<T extends Prisma.User$sentRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FriendshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notification<T extends Prisma.User$notificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  passwordResets<T extends Prisma.User$passwordResetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PasswordResetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__UserProfileClient<runtime.Types.Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  achievements<T extends Prisma.User$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTaskAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  chats<T extends Prisma.User$chatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  websiteUsage<T extends Prisma.User$websiteUsageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$websiteUsageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WebsiteUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3315,6 +3862,7 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly globalRole: Prisma.FieldRef<"User", 'GlobalRole'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
+  readonly googleId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -3708,123 +4256,51 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.notification
+ * User.createdActivities
  */
-export type User$notificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$createdActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Notification
+   * Select specific fields to fetch from the Activity
    */
-  select?: Prisma.NotificationSelect<ExtArgs> | null
+  select?: Prisma.ActivitySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Notification
+   * Omit specific fields from the Activity
    */
-  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.NotificationInclude<ExtArgs> | null
-  where?: Prisma.NotificationWhereInput
-  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationWhereUniqueInput
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
 }
 
 /**
- * User.progress
+ * User.ActivityDailyProgress
  */
-export type User$progressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$ActivityDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the TaskProgress
+   * Select specific fields to fetch from the ActivityDailyProgress
    */
-  select?: Prisma.TaskProgressSelect<ExtArgs> | null
+  select?: Prisma.ActivityDailyProgressSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the TaskProgress
+   * Omit specific fields from the ActivityDailyProgress
    */
-  omit?: Prisma.TaskProgressOmit<ExtArgs> | null
+  omit?: Prisma.ActivityDailyProgressOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TaskProgressInclude<ExtArgs> | null
-  where?: Prisma.TaskProgressWhereInput
-  orderBy?: Prisma.TaskProgressOrderByWithRelationInput | Prisma.TaskProgressOrderByWithRelationInput[]
-  cursor?: Prisma.TaskProgressWhereUniqueInput
+  include?: Prisma.ActivityDailyProgressInclude<ExtArgs> | null
+  where?: Prisma.ActivityDailyProgressWhereInput
+  orderBy?: Prisma.ActivityDailyProgressOrderByWithRelationInput | Prisma.ActivityDailyProgressOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityDailyProgressWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.TaskProgressScalarFieldEnum | Prisma.TaskProgressScalarFieldEnum[]
-}
-
-/**
- * User.activity
- */
-export type User$activityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ActivityMember
-   */
-  select?: Prisma.ActivityMemberSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ActivityMember
-   */
-  omit?: Prisma.ActivityMemberOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ActivityMemberInclude<ExtArgs> | null
-  where?: Prisma.ActivityMemberWhereInput
-  orderBy?: Prisma.ActivityMemberOrderByWithRelationInput | Prisma.ActivityMemberOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityMemberWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ActivityMemberScalarFieldEnum | Prisma.ActivityMemberScalarFieldEnum[]
-}
-
-/**
- * User.messages
- */
-export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Message
-   */
-  select?: Prisma.MessageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Message
-   */
-  omit?: Prisma.MessageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MessageInclude<ExtArgs> | null
-  where?: Prisma.MessageWhereInput
-  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
-  cursor?: Prisma.MessageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
-}
-
-/**
- * User.sentInvitations
- */
-export type User$sentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ActivityInvitation
-   */
-  select?: Prisma.ActivityInvitationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ActivityInvitation
-   */
-  omit?: Prisma.ActivityInvitationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ActivityInvitationInclude<ExtArgs> | null
-  where?: Prisma.ActivityInvitationWhereInput
-  orderBy?: Prisma.ActivityInvitationOrderByWithRelationInput | Prisma.ActivityInvitationOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityInvitationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ActivityInvitationScalarFieldEnum | Prisma.ActivityInvitationScalarFieldEnum[]
+  distinct?: Prisma.ActivityDailyProgressScalarFieldEnum | Prisma.ActivityDailyProgressScalarFieldEnum[]
 }
 
 /**
@@ -3852,27 +4328,51 @@ export type User$receivedInvitationsArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * User.createdActivities
+ * User.sentInvitations
  */
-export type User$createdActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$sentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Activity
+   * Select specific fields to fetch from the ActivityInvitation
    */
-  select?: Prisma.ActivitySelect<ExtArgs> | null
+  select?: Prisma.ActivityInvitationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Activity
+   * Omit specific fields from the ActivityInvitation
    */
-  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  omit?: Prisma.ActivityInvitationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ActivityInclude<ExtArgs> | null
-  where?: Prisma.ActivityWhereInput
-  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityWhereUniqueInput
+  include?: Prisma.ActivityInvitationInclude<ExtArgs> | null
+  where?: Prisma.ActivityInvitationWhereInput
+  orderBy?: Prisma.ActivityInvitationOrderByWithRelationInput | Prisma.ActivityInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityInvitationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
+  distinct?: Prisma.ActivityInvitationScalarFieldEnum | Prisma.ActivityInvitationScalarFieldEnum[]
+}
+
+/**
+ * User.activity
+ */
+export type User$activityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ActivityMember
+   */
+  select?: Prisma.ActivityMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ActivityMember
+   */
+  omit?: Prisma.ActivityMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityMemberInclude<ExtArgs> | null
+  where?: Prisma.ActivityMemberWhereInput
+  orderBy?: Prisma.ActivityMemberOrderByWithRelationInput | Prisma.ActivityMemberOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityMemberScalarFieldEnum | Prisma.ActivityMemberScalarFieldEnum[]
 }
 
 /**
@@ -3900,30 +4400,6 @@ export type User$createdTasksArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * User.sentRequests
- */
-export type User$sentRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Friendship
-   */
-  select?: Prisma.FriendshipSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Friendship
-   */
-  omit?: Prisma.FriendshipOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FriendshipInclude<ExtArgs> | null
-  where?: Prisma.FriendshipWhereInput
-  orderBy?: Prisma.FriendshipOrderByWithRelationInput | Prisma.FriendshipOrderByWithRelationInput[]
-  cursor?: Prisma.FriendshipWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.FriendshipScalarFieldEnum | Prisma.FriendshipScalarFieldEnum[]
-}
-
-/**
  * User.receivedRequests
  */
 export type User$receivedRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3948,70 +4424,75 @@ export type User$receivedRequestsArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * User.profile
+ * User.sentRequests
  */
-export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$sentRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserProfile
+   * Select specific fields to fetch from the Friendship
    */
-  select?: Prisma.UserProfileSelect<ExtArgs> | null
+  select?: Prisma.FriendshipSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserProfile
+   * Omit specific fields from the Friendship
    */
-  omit?: Prisma.UserProfileOmit<ExtArgs> | null
+  omit?: Prisma.FriendshipOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserProfileInclude<ExtArgs> | null
-  where?: Prisma.UserProfileWhereInput
+  include?: Prisma.FriendshipInclude<ExtArgs> | null
+  where?: Prisma.FriendshipWhereInput
+  orderBy?: Prisma.FriendshipOrderByWithRelationInput | Prisma.FriendshipOrderByWithRelationInput[]
+  cursor?: Prisma.FriendshipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FriendshipScalarFieldEnum | Prisma.FriendshipScalarFieldEnum[]
 }
 
 /**
- * User.achievements
+ * User.messages
  */
-export type User$achievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserAchievement
+   * Select specific fields to fetch from the Message
    */
-  select?: Prisma.UserAchievementSelect<ExtArgs> | null
+  select?: Prisma.MessageSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserAchievement
+   * Omit specific fields from the Message
    */
-  omit?: Prisma.UserAchievementOmit<ExtArgs> | null
+  omit?: Prisma.MessageOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserAchievementInclude<ExtArgs> | null
-  where?: Prisma.UserAchievementWhereInput
-  orderBy?: Prisma.UserAchievementOrderByWithRelationInput | Prisma.UserAchievementOrderByWithRelationInput[]
-  cursor?: Prisma.UserAchievementWhereUniqueInput
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserAchievementScalarFieldEnum | Prisma.UserAchievementScalarFieldEnum[]
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
 }
 
 /**
- * User.sessions
+ * User.notification
  */
-export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$notificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Session
+   * Select specific fields to fetch from the Notification
    */
-  select?: Prisma.SessionSelect<ExtArgs> | null
+  select?: Prisma.NotificationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Session
+   * Omit specific fields from the Notification
    */
-  omit?: Prisma.SessionOmit<ExtArgs> | null
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SessionInclude<ExtArgs> | null
-  where?: Prisma.SessionWhereInput
-  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
-  cursor?: Prisma.SessionWhereUniqueInput
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
@@ -4039,27 +4520,142 @@ export type User$passwordResetsArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * User.ActivityDailyProgress
+ * User.sessions
  */
-export type User$ActivityDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ActivityDailyProgress
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.ActivityDailyProgressSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ActivityDailyProgress
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.ActivityDailyProgressOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ActivityDailyProgressInclude<ExtArgs> | null
-  where?: Prisma.ActivityDailyProgressWhereInput
-  orderBy?: Prisma.ActivityDailyProgressOrderByWithRelationInput | Prisma.ActivityDailyProgressOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityDailyProgressWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ActivityDailyProgressScalarFieldEnum | Prisma.ActivityDailyProgressScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.progress
+ */
+export type User$progressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TaskProgress
+   */
+  select?: Prisma.TaskProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TaskProgress
+   */
+  omit?: Prisma.TaskProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaskProgressInclude<ExtArgs> | null
+  where?: Prisma.TaskProgressWhereInput
+  orderBy?: Prisma.TaskProgressOrderByWithRelationInput | Prisma.TaskProgressOrderByWithRelationInput[]
+  cursor?: Prisma.TaskProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TaskProgressScalarFieldEnum | Prisma.TaskProgressScalarFieldEnum[]
+}
+
+/**
+ * User.profile
+ */
+export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserProfile
+   */
+  select?: Prisma.UserProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserProfile
+   */
+  omit?: Prisma.UserProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserProfileInclude<ExtArgs> | null
+  where?: Prisma.UserProfileWhereInput
+}
+
+/**
+ * User.achievements
+ */
+export type User$achievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserTaskAchievement
+   */
+  select?: Prisma.UserTaskAchievementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserTaskAchievement
+   */
+  omit?: Prisma.UserTaskAchievementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserTaskAchievementInclude<ExtArgs> | null
+  where?: Prisma.UserTaskAchievementWhereInput
+  orderBy?: Prisma.UserTaskAchievementOrderByWithRelationInput | Prisma.UserTaskAchievementOrderByWithRelationInput[]
+  cursor?: Prisma.UserTaskAchievementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserTaskAchievementScalarFieldEnum | Prisma.UserTaskAchievementScalarFieldEnum[]
+}
+
+/**
+ * User.chats
+ */
+export type User$chatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChatConversation
+   */
+  select?: Prisma.ChatConversationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChatConversation
+   */
+  omit?: Prisma.ChatConversationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatConversationInclude<ExtArgs> | null
+  where?: Prisma.ChatConversationWhereInput
+  orderBy?: Prisma.ChatConversationOrderByWithRelationInput | Prisma.ChatConversationOrderByWithRelationInput[]
+  cursor?: Prisma.ChatConversationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatConversationScalarFieldEnum | Prisma.ChatConversationScalarFieldEnum[]
+}
+
+/**
+ * User.websiteUsage
+ */
+export type User$websiteUsageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WebsiteUsage
+   */
+  select?: Prisma.WebsiteUsageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WebsiteUsage
+   */
+  omit?: Prisma.WebsiteUsageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WebsiteUsageInclude<ExtArgs> | null
+  where?: Prisma.WebsiteUsageWhereInput
+  orderBy?: Prisma.WebsiteUsageOrderByWithRelationInput | Prisma.WebsiteUsageOrderByWithRelationInput[]
+  cursor?: Prisma.WebsiteUsageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WebsiteUsageScalarFieldEnum | Prisma.WebsiteUsageScalarFieldEnum[]
 }
 
 /**

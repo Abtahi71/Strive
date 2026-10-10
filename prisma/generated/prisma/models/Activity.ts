@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Activity
@@ -261,11 +261,11 @@ export type ActivityWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   visibility?: Prisma.EnumVisibilityFilter<"Activity"> | $Enums.Visibility
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  task?: Prisma.ActivityTaskListRelationFilter
-  invitations?: Prisma.ActivityInvitationListRelationFilter
-  group?: Prisma.XOR<Prisma.ConversationGroupNullableScalarRelationFilter, Prisma.ConversationGroupWhereInput> | null
-  members?: Prisma.ActivityMemberListRelationFilter
   dailyProgress?: Prisma.ActivityDailyProgressListRelationFilter
+  invitations?: Prisma.ActivityInvitationListRelationFilter
+  members?: Prisma.ActivityMemberListRelationFilter
+  task?: Prisma.ActivityTaskListRelationFilter
+  group?: Prisma.XOR<Prisma.ConversationGroupNullableScalarRelationFilter, Prisma.ConversationGroupWhereInput> | null
 }
 
 export type ActivityOrderByWithRelationInput = {
@@ -280,11 +280,11 @@ export type ActivityOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   creator?: Prisma.UserOrderByWithRelationInput
-  task?: Prisma.ActivityTaskOrderByRelationAggregateInput
-  invitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
-  group?: Prisma.ConversationGroupOrderByWithRelationInput
-  members?: Prisma.ActivityMemberOrderByRelationAggregateInput
   dailyProgress?: Prisma.ActivityDailyProgressOrderByRelationAggregateInput
+  invitations?: Prisma.ActivityInvitationOrderByRelationAggregateInput
+  members?: Prisma.ActivityMemberOrderByRelationAggregateInput
+  task?: Prisma.ActivityTaskOrderByRelationAggregateInput
+  group?: Prisma.ConversationGroupOrderByWithRelationInput
 }
 
 export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -302,11 +302,11 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   visibility?: Prisma.EnumVisibilityFilter<"Activity"> | $Enums.Visibility
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  task?: Prisma.ActivityTaskListRelationFilter
-  invitations?: Prisma.ActivityInvitationListRelationFilter
-  group?: Prisma.XOR<Prisma.ConversationGroupNullableScalarRelationFilter, Prisma.ConversationGroupWhereInput> | null
-  members?: Prisma.ActivityMemberListRelationFilter
   dailyProgress?: Prisma.ActivityDailyProgressListRelationFilter
+  invitations?: Prisma.ActivityInvitationListRelationFilter
+  members?: Prisma.ActivityMemberListRelationFilter
+  task?: Prisma.ActivityTaskListRelationFilter
+  group?: Prisma.XOR<Prisma.ConversationGroupNullableScalarRelationFilter, Prisma.ConversationGroupWhereInput> | null
 }, "id">
 
 export type ActivityOrderByWithAggregationInput = {
@@ -354,11 +354,11 @@ export type ActivityCreateInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
-  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateInput = {
@@ -372,11 +372,11 @@ export type ActivityUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUpdateInput = {
@@ -390,11 +390,11 @@ export type ActivityUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
-  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateInput = {
@@ -408,11 +408,11 @@ export type ActivityUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityCreateManyInput = {
@@ -644,10 +644,10 @@ export type ActivityCreateWithoutMembersInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
-  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateWithoutMembersInput = {
@@ -661,10 +661,10 @@ export type ActivityUncheckedCreateWithoutMembersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityCreateOrConnectWithoutMembersInput = {
@@ -694,10 +694,10 @@ export type ActivityUpdateWithoutMembersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
-  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutMembersInput = {
@@ -711,10 +711,10 @@ export type ActivityUncheckedUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityCreateWithoutInvitationsInput = {
@@ -728,10 +728,10 @@ export type ActivityCreateWithoutInvitationsInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
+  dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
   task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
   group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
-  dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityUncheckedCreateWithoutInvitationsInput = {
@@ -745,10 +745,10 @@ export type ActivityUncheckedCreateWithoutInvitationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
+  dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
   task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
   group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
-  dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type ActivityCreateOrConnectWithoutInvitationsInput = {
@@ -778,10 +778,10 @@ export type ActivityUpdateWithoutInvitationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
+  dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
   task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
   group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
-  dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutInvitationsInput = {
@@ -795,10 +795,10 @@ export type ActivityUncheckedUpdateWithoutInvitationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
   task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
   group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
-  dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type ActivityCreateWithoutTaskInput = {
@@ -812,10 +812,10 @@ export type ActivityCreateWithoutTaskInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
-  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateWithoutTaskInput = {
@@ -829,10 +829,10 @@ export type ActivityUncheckedCreateWithoutTaskInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityCreateOrConnectWithoutTaskInput = {
@@ -862,10 +862,10 @@ export type ActivityUpdateWithoutTaskInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
-  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutTaskInput = {
@@ -879,10 +879,10 @@ export type ActivityUncheckedUpdateWithoutTaskInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityCreateWithoutDailyProgressInput = {
@@ -896,10 +896,10 @@ export type ActivityCreateWithoutDailyProgressInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
-  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
   invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
   members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateWithoutDailyProgressInput = {
@@ -913,10 +913,10 @@ export type ActivityUncheckedCreateWithoutDailyProgressInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
   invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
   members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityCreateOrConnectWithoutDailyProgressInput = {
@@ -946,10 +946,10 @@ export type ActivityUpdateWithoutDailyProgressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
-  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
   invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
   members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutDailyProgressInput = {
@@ -963,10 +963,10 @@ export type ActivityUncheckedUpdateWithoutDailyProgressInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
   invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
   members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityCreateWithoutCreatorInput = {
@@ -979,11 +979,11 @@ export type ActivityCreateWithoutCreatorInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateWithoutCreatorInput = {
@@ -996,11 +996,11 @@ export type ActivityUncheckedCreateWithoutCreatorInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
-  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
-  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
-  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
+  members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
+  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
+  group?: Prisma.ConversationGroupUncheckedCreateNestedOneWithoutActivityInput
 }
 
 export type ActivityCreateOrConnectWithoutCreatorInput = {
@@ -1056,10 +1056,10 @@ export type ActivityCreateWithoutGroupInput = {
   updatedAt?: Date | string
   visibility: $Enums.Visibility
   creator: Prisma.UserCreateNestedOneWithoutCreatedActivitiesInput
-  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
+  dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
   invitations?: Prisma.ActivityInvitationCreateNestedManyWithoutActivityInput
   members?: Prisma.ActivityMemberCreateNestedManyWithoutActivityInput
-  dailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutTaskInput
+  task?: Prisma.ActivityTaskCreateNestedManyWithoutActivityInput
 }
 
 export type ActivityUncheckedCreateWithoutGroupInput = {
@@ -1073,10 +1073,10 @@ export type ActivityUncheckedCreateWithoutGroupInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   visibility: $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
+  dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
   invitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutActivityInput
   members?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutActivityInput
-  dailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutTaskInput
+  task?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutActivityInput
 }
 
 export type ActivityCreateOrConnectWithoutGroupInput = {
@@ -1106,10 +1106,10 @@ export type ActivityUpdateWithoutGroupInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   creator?: Prisma.UserUpdateOneRequiredWithoutCreatedActivitiesNestedInput
-  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
+  dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
   invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
   members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
-  dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutGroupInput = {
@@ -1123,10 +1123,10 @@ export type ActivityUncheckedUpdateWithoutGroupInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
+  dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
   invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
   members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
-  dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
 }
 
 export type ActivityCreateManyCreatorInput = {
@@ -1151,11 +1151,11 @@ export type ActivityUpdateWithoutCreatorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutCreatorInput = {
@@ -1168,11 +1168,11 @@ export type ActivityUncheckedUpdateWithoutCreatorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
-  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
-  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
-  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
   dailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutTaskNestedInput
+  invitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutActivityNestedInput
+  members?: Prisma.ActivityMemberUncheckedUpdateManyWithoutActivityNestedInput
+  task?: Prisma.ActivityTaskUncheckedUpdateManyWithoutActivityNestedInput
+  group?: Prisma.ConversationGroupUncheckedUpdateOneWithoutActivityNestedInput
 }
 
 export type ActivityUncheckedUpdateManyWithoutCreatorInput = {
@@ -1193,17 +1193,17 @@ export type ActivityUncheckedUpdateManyWithoutCreatorInput = {
  */
 
 export type ActivityCountOutputType = {
-  task: number
+  dailyProgress: number
   invitations: number
   members: number
-  dailyProgress: number
+  task: number
 }
 
 export type ActivityCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | ActivityCountOutputTypeCountTaskArgs
+  dailyProgress?: boolean | ActivityCountOutputTypeCountDailyProgressArgs
   invitations?: boolean | ActivityCountOutputTypeCountInvitationsArgs
   members?: boolean | ActivityCountOutputTypeCountMembersArgs
-  dailyProgress?: boolean | ActivityCountOutputTypeCountDailyProgressArgs
+  task?: boolean | ActivityCountOutputTypeCountTaskArgs
 }
 
 /**
@@ -1219,8 +1219,8 @@ export type ActivityCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * ActivityCountOutputType without action
  */
-export type ActivityCountOutputTypeCountTaskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityTaskWhereInput
+export type ActivityCountOutputTypeCountDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityDailyProgressWhereInput
 }
 
 /**
@@ -1240,8 +1240,8 @@ export type ActivityCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Type
 /**
  * ActivityCountOutputType without action
  */
-export type ActivityCountOutputTypeCountDailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ActivityDailyProgressWhereInput
+export type ActivityCountOutputTypeCountTaskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityTaskWhereInput
 }
 
 
@@ -1257,11 +1257,11 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   visibility?: boolean
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  task?: boolean | Prisma.Activity$taskArgs<ExtArgs>
-  invitations?: boolean | Prisma.Activity$invitationsArgs<ExtArgs>
-  group?: boolean | Prisma.Activity$groupArgs<ExtArgs>
-  members?: boolean | Prisma.Activity$membersArgs<ExtArgs>
   dailyProgress?: boolean | Prisma.Activity$dailyProgressArgs<ExtArgs>
+  invitations?: boolean | Prisma.Activity$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.Activity$membersArgs<ExtArgs>
+  task?: boolean | Prisma.Activity$taskArgs<ExtArgs>
+  group?: boolean | Prisma.Activity$groupArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
@@ -1309,11 +1309,11 @@ export type ActivitySelectScalar = {
 export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "memberCount" | "taskCount" | "creatorId" | "createdAt" | "updatedAt" | "visibility", ExtArgs["result"]["activity"]>
 export type ActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  task?: boolean | Prisma.Activity$taskArgs<ExtArgs>
-  invitations?: boolean | Prisma.Activity$invitationsArgs<ExtArgs>
-  group?: boolean | Prisma.Activity$groupArgs<ExtArgs>
-  members?: boolean | Prisma.Activity$membersArgs<ExtArgs>
   dailyProgress?: boolean | Prisma.Activity$dailyProgressArgs<ExtArgs>
+  invitations?: boolean | Prisma.Activity$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.Activity$membersArgs<ExtArgs>
+  task?: boolean | Prisma.Activity$taskArgs<ExtArgs>
+  group?: boolean | Prisma.Activity$groupArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ActivityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1327,11 +1327,11 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Activity"
   objects: {
     creator: Prisma.$UserPayload<ExtArgs>
-    task: Prisma.$ActivityTaskPayload<ExtArgs>[]
-    invitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
-    group: Prisma.$ConversationGroupPayload<ExtArgs> | null
-    members: Prisma.$ActivityMemberPayload<ExtArgs>[]
     dailyProgress: Prisma.$ActivityDailyProgressPayload<ExtArgs>[]
+    invitations: Prisma.$ActivityInvitationPayload<ExtArgs>[]
+    members: Prisma.$ActivityMemberPayload<ExtArgs>[]
+    task: Prisma.$ActivityTaskPayload<ExtArgs>[]
+    group: Prisma.$ConversationGroupPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1739,11 +1739,11 @@ readonly fields: ActivityFieldRefs;
 export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   creator<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  task<T extends Prisma.Activity$taskArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$taskArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invitations<T extends Prisma.Activity$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  group<T extends Prisma.Activity$groupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$groupArgs<ExtArgs>>): Prisma.Prisma__ConversationGroupClient<runtime.Types.Result.GetResult<Prisma.$ConversationGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  members<T extends Prisma.Activity$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dailyProgress<T extends Prisma.Activity$dailyProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$dailyProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityDailyProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.Activity$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  members<T extends Prisma.Activity$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  task<T extends Prisma.Activity$taskArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$taskArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  group<T extends Prisma.Activity$groupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$groupArgs<ExtArgs>>): Prisma.Prisma__ConversationGroupClient<runtime.Types.Result.GetResult<Prisma.$ConversationGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2184,27 +2184,27 @@ export type ActivityDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Activity.task
+ * Activity.dailyProgress
  */
-export type Activity$taskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Activity$dailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ActivityTask
+   * Select specific fields to fetch from the ActivityDailyProgress
    */
-  select?: Prisma.ActivityTaskSelect<ExtArgs> | null
+  select?: Prisma.ActivityDailyProgressSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ActivityTask
+   * Omit specific fields from the ActivityDailyProgress
    */
-  omit?: Prisma.ActivityTaskOmit<ExtArgs> | null
+  omit?: Prisma.ActivityDailyProgressOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ActivityTaskInclude<ExtArgs> | null
-  where?: Prisma.ActivityTaskWhereInput
-  orderBy?: Prisma.ActivityTaskOrderByWithRelationInput | Prisma.ActivityTaskOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityTaskWhereUniqueInput
+  include?: Prisma.ActivityDailyProgressInclude<ExtArgs> | null
+  where?: Prisma.ActivityDailyProgressWhereInput
+  orderBy?: Prisma.ActivityDailyProgressOrderByWithRelationInput | Prisma.ActivityDailyProgressOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityDailyProgressWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ActivityTaskScalarFieldEnum | Prisma.ActivityTaskScalarFieldEnum[]
+  distinct?: Prisma.ActivityDailyProgressScalarFieldEnum | Prisma.ActivityDailyProgressScalarFieldEnum[]
 }
 
 /**
@@ -2232,25 +2232,6 @@ export type Activity$invitationsArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Activity.group
- */
-export type Activity$groupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ConversationGroup
-   */
-  select?: Prisma.ConversationGroupSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ConversationGroup
-   */
-  omit?: Prisma.ConversationGroupOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ConversationGroupInclude<ExtArgs> | null
-  where?: Prisma.ConversationGroupWhereInput
-}
-
-/**
  * Activity.members
  */
 export type Activity$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2275,27 +2256,46 @@ export type Activity$membersArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Activity.dailyProgress
+ * Activity.task
  */
-export type Activity$dailyProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Activity$taskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ActivityDailyProgress
+   * Select specific fields to fetch from the ActivityTask
    */
-  select?: Prisma.ActivityDailyProgressSelect<ExtArgs> | null
+  select?: Prisma.ActivityTaskSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ActivityDailyProgress
+   * Omit specific fields from the ActivityTask
    */
-  omit?: Prisma.ActivityDailyProgressOmit<ExtArgs> | null
+  omit?: Prisma.ActivityTaskOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ActivityDailyProgressInclude<ExtArgs> | null
-  where?: Prisma.ActivityDailyProgressWhereInput
-  orderBy?: Prisma.ActivityDailyProgressOrderByWithRelationInput | Prisma.ActivityDailyProgressOrderByWithRelationInput[]
-  cursor?: Prisma.ActivityDailyProgressWhereUniqueInput
+  include?: Prisma.ActivityTaskInclude<ExtArgs> | null
+  where?: Prisma.ActivityTaskWhereInput
+  orderBy?: Prisma.ActivityTaskOrderByWithRelationInput | Prisma.ActivityTaskOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityTaskWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ActivityDailyProgressScalarFieldEnum | Prisma.ActivityDailyProgressScalarFieldEnum[]
+  distinct?: Prisma.ActivityTaskScalarFieldEnum | Prisma.ActivityTaskScalarFieldEnum[]
+}
+
+/**
+ * Activity.group
+ */
+export type Activity$groupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConversationGroup
+   */
+  select?: Prisma.ConversationGroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConversationGroup
+   */
+  omit?: Prisma.ConversationGroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConversationGroupInclude<ExtArgs> | null
+  where?: Prisma.ConversationGroupWhereInput
 }
 
 /**
