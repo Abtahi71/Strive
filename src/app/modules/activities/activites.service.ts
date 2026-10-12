@@ -127,7 +127,19 @@ const getMyCreatedActivity = async(userId:string)=>{
 
 const getPublicActivites = async()=>{
     const result = await prisma.activity.findMany({
-        where:{visibility:"PUBLIC"}
+        where:{visibility:"PUBLIC"},
+        select:{
+            id:true,
+            name:true,
+            description:true,
+            imageUrl:true,
+            createdAt:true,
+            memberCount:true,
+            taskCount:true,
+            creator:{
+                select:{username:true}
+            }
+        }
     })
     return result
 }

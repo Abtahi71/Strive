@@ -813,7 +813,19 @@ var getMyCreatedActivity = async (userId) => {
 };
 var getPublicActivites = async () => {
   const result = await prisma.activity.findMany({
-    where: { visibility: "PUBLIC" }
+    where: { visibility: "PUBLIC" },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      imageUrl: true,
+      createdAt: true,
+      memberCount: true,
+      taskCount: true,
+      creator: {
+        select: { username: true }
+      }
+    }
   });
   return result;
 };
@@ -2002,10 +2014,44 @@ var dailyProgressAnalytics = async (activityId, userId) => {
   if (!hasAccess) {
     throw new AppError_default(403, "You don't have access to this activity");
   }
-  const progressAnalytics = await prisma.activityDailyProgress.findMany({
-    where: { activityId, userId }
-  });
-  return progressAnalytics;
+  const [ownProgressAnalytics, membersProgressAnalytics] = await Promise.all([
+    // Your own progress history
+    prisma.activityDailyProgress.findMany({
+      where: {
+        activityId,
+        userId
+      },
+      orderBy: {
+        date: "asc"
+      }
+    }),
+    // All other members' progress histories
+    prisma.activityDailyProgress.findMany({
+      where: {
+        activityId,
+        userId: { not: userId }
+      },
+      include: {
+        user: true
+      },
+      orderBy: [{ userId: "asc" }, { date: "asc" }]
+    })
+  ]);
+  const groupedMembersProgress = membersProgressAnalytics.reduce((groups, record) => {
+    const { userId: userId2, user } = record;
+    if (!groups[userId2]) {
+      groups[userId2] = {
+        username: user.name,
+        progress: []
+      };
+    }
+    groups[userId2].progress.push(record);
+    return groups;
+  }, {});
+  return {
+    ownProgressAnalytics,
+    membersProgressAnalytics: groupedMembersProgress
+  };
 };
 var getFriendRequests = async (userId, status8) => {
   let fstatus;
@@ -2372,7 +2418,7 @@ var dailyProgressAnalytics2 = catchAsync(
     const result = await userService.dailyProgressAnalytics(activityId, userId);
     res.status(200).json({
       success: true,
-      message: "Daily progress analytics retrieved successfully",
+      message: "Daily progress analytics retrieved successfullyyyyyyy",
       data: result
     });
   }
@@ -3531,7 +3577,7 @@ var globalErrorHandler = (err, req, res, next) => {
 
 // src/app.ts
 var app = express6();
-var allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
+var allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:3000", process.env.FRONTEND_URL];
 app.use(
   cors({
     origin: (origin, callback) => {

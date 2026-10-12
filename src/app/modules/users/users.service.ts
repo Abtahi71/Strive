@@ -623,22 +623,69 @@ const getTodaysTasks = async(activityId:string)=>{
     return tasks
 }
 
-const dailyProgressAnalytics = async(activityId:string, userId:string)=>{
+const dailyProgressAnalytics = async (activityId: string, userId: string) => {
+  const hasAccess = await prisma.activityMember.findFirst({
+    where: { activityId: activityId, userId: userId },
+  });
+  if (!hasAccess) {
+    throw new AppError(403, "You don't have access to this activity");
+  }
 
-    const hasAccess = await prisma.activityMember.findFirst({
-        where:{activityId:activityId,userId:userId}
-    })
-    if (!hasAccess) {
-      throw new AppError(403, "You don't have access to this activity");
+  const [ownProgressAnalytics, membersProgressAnalytics] = await Promise.all([
+    // Your own progress history
+    prisma.activityDailyProgress.findMany({
+      where: {
+        activityId,
+        userId,
+      },
+      orderBy: {
+        date: "asc",
+      },
+    }),
+
+    // All other members' progress histories
+    prisma.activityDailyProgress.findMany({
+      where: {
+        activityId,
+        userId: { not: userId },
+      },
+      include:{
+        user:{
+          select:{name:true,username:true,id:true}
+        }
+      },
+      orderBy: [{ userId: "asc" }, { date: "asc" }],
+    }),
+  ]);
+
+const groupedMembersProgress = membersProgressAnalytics.reduce<
+  Record<
+    string,
+    {
+      username: string | null;
+      progress: typeof membersProgressAnalytics;
     }
+  >
+>((groups, record) => {
+  const { userId, user } = record;
 
-    const progressAnalytics = await prisma.activityDailyProgress.findMany({
-        where:{activityId:activityId,userId:userId},
-        
-    }) 
+  if (!groups[userId]) {
+    groups[userId] = {
+      username: user.name,
+      progress: [],
+    };
+  }
 
-    return progressAnalytics
-}
+  groups[userId].progress.push(record);
+
+  return groups;
+}, {});
+
+  return {
+    ownProgressAnalytics,
+    membersProgressAnalytics:groupedMembersProgress,
+  };
+};
 
 
 const getFriendRequests = async(userId:string,status?:string)=>{

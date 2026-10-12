@@ -19,6 +19,8 @@ router.get(
   checkAuth(GlobalRole.USER),
   activityController.getMyCreatedActivity
 );
+
+
 router.get("/public-activities", activityController.getPublicActivities);
 router.post("/join-activity", activityController.joinActivity);
 router.post("/leave-activity", activityController.leaveActivity);

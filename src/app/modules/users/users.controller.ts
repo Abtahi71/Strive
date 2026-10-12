@@ -798,7 +798,7 @@ const dailyProgressAnalytics = catchAsync(
 
     res.status(200).json({
       success: true,
-      message: "Daily progress analytics retrieved successfully",
+      message: "Daily progress analytics retrieved successfullyyyyyyy",
       data: result,
     });
   }
