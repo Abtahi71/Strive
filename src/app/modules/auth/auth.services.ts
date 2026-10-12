@@ -6,6 +6,7 @@ import { tokenUtils } from "../../utils/token.js"
 import { sessionUtils } from "../../utils/session.js"
 import status from "http-status"
 import { googleClient } from "../../config/google.js"
+import crypto from "crypto";
 
 const register = async(payload:any)=>{
     const existingUser = await prisma.user.findFirst({where:{OR:[{email:payload.email},{username:payload.email}]}})
@@ -190,21 +191,10 @@ const googleLogin = async (code: string) => {
   }
 
   // Create your normal application access token
-  const accessToken = tokenUtils.getAccessToken({
-    userId: user.id,
-    role: user.globalRole,
-    email: user.email,
-  });
-
-  // Create your normal application session
-  const sessionToken = await sessionUtils.createSession(user.id);
-
   const { password, ...userWithoutPassword } = user;
 
   return {
     user: userWithoutPassword,
-    accessToken,
-    sessionToken,
   };
 };
 
@@ -216,7 +206,7 @@ const changePassword = async(payload:any,userId:string)=>{
         throw new AppError(400,"User does not exist")
     }
 
-    const isPasswordCorrect = await bcrypt.compare(payload.oldPassword,user.password)
+    const isPasswordCorrect = await bcrypt.compare(payload.oldPassword,user.password!)
 
     if(!isPasswordCorrect){
         throw new AppError(400,"Incorrect password")
@@ -233,4 +223,78 @@ const changePassword = async(payload:any,userId:string)=>{
 
 }
 
-export const AuthServices = {googleLogin,register,login,refreshAccessToken,logOut,logOutAllDevices,getMe,changePassword}
+
+const hashGoogleLoginCode = (code: string) =>
+  crypto.createHash("sha256").update(code).digest("hex");
+
+// Create a temporary code valid for 2 minutes.
+const createGoogleLoginCode = async (userId: string) => {
+  const code = crypto.randomBytes(32).toString("hex");
+  const codeHash = hashGoogleLoginCode(code);
+
+  await prisma.googleLoginCode.create({
+    data: {
+      codeHash,
+      userId,
+      expiresAt: new Date(Date.now() + 2 * 60 * 1000),
+    },
+  });
+
+  return code;
+};
+
+// Exchange a code for normal Strive authentication tokens.
+const exchangeGoogleLoginCode = async (code: string) => {
+  const codeHash = hashGoogleLoginCode(code);
+
+  const user = await prisma.$transaction(async (tx) => {
+    const loginCode = await tx.googleLoginCode.findUnique({
+      where: { codeHash },
+    });
+
+    if (!loginCode || loginCode.expiresAt <= new Date()) {
+      throw new AppError(401, "Invalid or expired Google login code");
+    }
+
+    // Only one concurrent request can successfully consume this code.
+    const consumed = await tx.googleLoginCode.deleteMany({
+      where: {
+        id: loginCode.id,
+        codeHash,
+        expiresAt: { gt: new Date() },
+      },
+    });
+
+    if (consumed.count !== 1) {
+      throw new AppError(401, "Google login code has already been used");
+    }
+
+    const foundUser = await tx.user.findUnique({
+      where: { id: loginCode.userId },
+    });
+
+    if (!foundUser || !foundUser.isActive) {
+      throw new AppError(401, "Google login is unavailable for this account");
+    }
+
+    return foundUser;
+  });
+
+  const accessToken = tokenUtils.getAccessToken({
+    userId: user.id,
+    role: user.globalRole,
+    email: user.email,
+  });
+
+  const sessionToken = await sessionUtils.createSession(user.id);
+
+  const { password, ...userWithoutPassword } = user;
+
+  return {
+    user: userWithoutPassword,
+    accessToken,
+    sessionToken,
+  };
+};
+
+export const AuthServices = {googleLogin,register,login,refreshAccessToken,logOut,logOutAllDevices,getMe,changePassword,createGoogleLoginCode,exchangeGoogleLoginCode};

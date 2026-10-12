@@ -11,6 +11,7 @@ router.post("/login", AuthControllers.login);
 router.post("/refresh", AuthControllers.refresh);
 
 router.get("/google/callback", AuthControllers.googleLogin);
+router.post("/google/exchange", AuthControllers.exchangeGoogleLoginCode);
 
 // Requires only a valid access token — no role restriction
 router.post("/logout", checkAuth(), AuthControllers.logout);

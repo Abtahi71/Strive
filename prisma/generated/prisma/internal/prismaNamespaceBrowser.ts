@@ -69,6 +69,7 @@ export const ModelName = {
   UserProfile: 'UserProfile',
   Friendship: 'Friendship',
   PasswordReset: 'PasswordReset',
+  GoogleLoginCode: 'GoogleLoginCode',
   ConversationGroup: 'ConversationGroup',
   Message: 'Message',
   Attachment: 'Attachment',
@@ -341,6 +342,17 @@ export const PasswordResetScalarFieldEnum = {
 } as const
 
 export type PasswordResetScalarFieldEnum = (typeof PasswordResetScalarFieldEnum)[keyof typeof PasswordResetScalarFieldEnum]
+
+
+export const GoogleLoginCodeScalarFieldEnum = {
+  id: 'id',
+  codeHash: 'codeHash',
+  userId: 'userId',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GoogleLoginCodeScalarFieldEnum = (typeof GoogleLoginCodeScalarFieldEnum)[keyof typeof GoogleLoginCodeScalarFieldEnum]
 
 
 export const ConversationGroupScalarFieldEnum = {

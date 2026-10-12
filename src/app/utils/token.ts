@@ -3,7 +3,7 @@ import type { SignOptions } from "jsonwebtoken"
 import { CookieUtils } from "./cookie.js"
 import { jwtUtils } from "./jwt.js"
 
-const isProd = process.env.NODE_ENV === 'prod'
+const isProd = process.env.NODE_ENV === 'production'
 
 const ACCESS_TOKEN_TTL_MS = 2 * 60 * 1000; // 15 min
 const SESSION_TOKEN_TTL_MS = 7 * 24 * 60 * 60 * 1000; 

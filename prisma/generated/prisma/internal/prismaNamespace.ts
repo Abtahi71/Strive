@@ -415,6 +415,7 @@ export const ModelName = {
   UserProfile: 'UserProfile',
   Friendship: 'Friendship',
   PasswordReset: 'PasswordReset',
+  GoogleLoginCode: 'GoogleLoginCode',
   ConversationGroup: 'ConversationGroup',
   Message: 'Message',
   Attachment: 'Attachment',
@@ -436,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "chatConversation" | "chatMessage" | "taskAchievement" | "userTaskAchievement" | "activity" | "activityMember" | "activityInvitation" | "quiz" | "activityTask" | "taskSchedule" | "taskProgress" | "taskProgressEntry" | "activityDailyProgress" | "user" | "session" | "userProfile" | "friendship" | "passwordReset" | "conversationGroup" | "message" | "attachment" | "knowledge_chunks" | "notification" | "websiteUsage"
+    modelProps: "chatConversation" | "chatMessage" | "taskAchievement" | "userTaskAchievement" | "activity" | "activityMember" | "activityInvitation" | "quiz" | "activityTask" | "taskSchedule" | "taskProgress" | "taskProgressEntry" | "activityDailyProgress" | "user" | "session" | "userProfile" | "friendship" | "passwordReset" | "googleLoginCode" | "conversationGroup" | "message" | "attachment" | "knowledge_chunks" | "notification" | "websiteUsage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1772,6 +1773,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GoogleLoginCode: {
+      payload: Prisma.$GoogleLoginCodePayload<ExtArgs>
+      fields: Prisma.GoogleLoginCodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoogleLoginCodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoogleLoginCodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        findFirst: {
+          args: Prisma.GoogleLoginCodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoogleLoginCodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        findMany: {
+          args: Prisma.GoogleLoginCodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>[]
+        }
+        create: {
+          args: Prisma.GoogleLoginCodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        createMany: {
+          args: Prisma.GoogleLoginCodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoogleLoginCodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>[]
+        }
+        delete: {
+          args: Prisma.GoogleLoginCodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        update: {
+          args: Prisma.GoogleLoginCodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        deleteMany: {
+          args: Prisma.GoogleLoginCodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoogleLoginCodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoogleLoginCodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>[]
+        }
+        upsert: {
+          args: Prisma.GoogleLoginCodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoogleLoginCodePayload>
+        }
+        aggregate: {
+          args: Prisma.GoogleLoginCodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoogleLoginCode>
+        }
+        groupBy: {
+          args: Prisma.GoogleLoginCodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoogleLoginCodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoogleLoginCodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoogleLoginCodeCountAggregateOutputType> | number
+        }
+      }
+    }
     ConversationGroup: {
       payload: Prisma.$ConversationGroupPayload<ExtArgs>
       fields: Prisma.ConversationGroupFieldRefs
@@ -2505,6 +2580,17 @@ export const PasswordResetScalarFieldEnum = {
 export type PasswordResetScalarFieldEnum = (typeof PasswordResetScalarFieldEnum)[keyof typeof PasswordResetScalarFieldEnum]
 
 
+export const GoogleLoginCodeScalarFieldEnum = {
+  id: 'id',
+  codeHash: 'codeHash',
+  userId: 'userId',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GoogleLoginCodeScalarFieldEnum = (typeof GoogleLoginCodeScalarFieldEnum)[keyof typeof GoogleLoginCodeScalarFieldEnum]
+
+
 export const ConversationGroupScalarFieldEnum = {
   id: 'id',
   activityId: 'activityId',
@@ -3040,6 +3126,7 @@ export type GlobalOmitConfig = {
   userProfile?: Prisma.UserProfileOmit
   friendship?: Prisma.FriendshipOmit
   passwordReset?: Prisma.PasswordResetOmit
+  googleLoginCode?: Prisma.GoogleLoginCodeOmit
   conversationGroup?: Prisma.ConversationGroupOmit
   message?: Prisma.MessageOmit
   attachment?: Prisma.AttachmentOmit

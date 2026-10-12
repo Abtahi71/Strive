@@ -247,6 +247,7 @@ export type UserWhereInput = {
   achievements?: Prisma.UserTaskAchievementListRelationFilter
   chats?: Prisma.ChatConversationListRelationFilter
   websiteUsage?: Prisma.WebsiteUsageListRelationFilter
+  googleLoginCodes?: Prisma.GoogleLoginCodeListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -278,6 +279,7 @@ export type UserOrderByWithRelationInput = {
   achievements?: Prisma.UserTaskAchievementOrderByRelationAggregateInput
   chats?: Prisma.ChatConversationOrderByRelationAggregateInput
   websiteUsage?: Prisma.WebsiteUsageOrderByRelationAggregateInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -312,6 +314,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   achievements?: Prisma.UserTaskAchievementListRelationFilter
   chats?: Prisma.ChatConversationListRelationFilter
   websiteUsage?: Prisma.WebsiteUsageListRelationFilter
+  googleLoginCodes?: Prisma.GoogleLoginCodeListRelationFilter
 }, "id" | "username" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
@@ -377,6 +380,7 @@ export type UserCreateInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -408,6 +412,7 @@ export type UserUncheckedCreateInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -439,6 +444,7 @@ export type UserUpdateInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -470,6 +476,7 @@ export type UserUncheckedUpdateInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -761,6 +768,20 @@ export type UserUpdateOneRequiredWithoutPasswordResetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPasswordResetsInput, Prisma.UserUpdateWithoutPasswordResetsInput>, Prisma.UserUncheckedUpdateWithoutPasswordResetsInput>
 }
 
+export type UserCreateNestedOneWithoutGoogleLoginCodesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedCreateWithoutGoogleLoginCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoogleLoginCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGoogleLoginCodesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedCreateWithoutGoogleLoginCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoogleLoginCodesInput
+  upsert?: Prisma.UserUpsertWithoutGoogleLoginCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoogleLoginCodesInput, Prisma.UserUpdateWithoutGoogleLoginCodesInput>, Prisma.UserUncheckedUpdateWithoutGoogleLoginCodesInput>
+}
+
 export type UserCreateNestedOneWithoutMessagesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesInput
@@ -831,6 +852,7 @@ export type UserCreateWithoutChatsInput = {
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutChatsInput = {
@@ -861,6 +883,7 @@ export type UserUncheckedCreateWithoutChatsInput = {
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutChatsInput = {
@@ -907,6 +930,7 @@ export type UserUpdateWithoutChatsInput = {
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChatsInput = {
@@ -937,6 +961,7 @@ export type UserUncheckedUpdateWithoutChatsInput = {
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAchievementsInput = {
@@ -967,6 +992,7 @@ export type UserCreateWithoutAchievementsInput = {
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAchievementsInput = {
@@ -997,6 +1023,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAchievementsInput = {
@@ -1043,6 +1070,7 @@ export type UserUpdateWithoutAchievementsInput = {
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAchievementsInput = {
@@ -1073,6 +1101,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedActivitiesInput = {
@@ -1103,6 +1132,7 @@ export type UserCreateWithoutCreatedActivitiesInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedActivitiesInput = {
@@ -1133,6 +1163,7 @@ export type UserUncheckedCreateWithoutCreatedActivitiesInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedActivitiesInput = {
@@ -1179,6 +1210,7 @@ export type UserUpdateWithoutCreatedActivitiesInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedActivitiesInput = {
@@ -1209,6 +1241,7 @@ export type UserUncheckedUpdateWithoutCreatedActivitiesInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutActivityInput = {
@@ -1239,6 +1272,7 @@ export type UserCreateWithoutActivityInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutActivityInput = {
@@ -1269,6 +1303,7 @@ export type UserUncheckedCreateWithoutActivityInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutActivityInput = {
@@ -1315,6 +1350,7 @@ export type UserUpdateWithoutActivityInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityInput = {
@@ -1345,6 +1381,7 @@ export type UserUncheckedUpdateWithoutActivityInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReceivedInvitationsInput = {
@@ -1375,6 +1412,7 @@ export type UserCreateWithoutReceivedInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedInvitationsInput = {
@@ -1405,6 +1443,7 @@ export type UserUncheckedCreateWithoutReceivedInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedInvitationsInput = {
@@ -1440,6 +1479,7 @@ export type UserCreateWithoutSentInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -1470,6 +1510,7 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -1516,6 +1557,7 @@ export type UserUpdateWithoutReceivedInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedInvitationsInput = {
@@ -1546,6 +1588,7 @@ export type UserUncheckedUpdateWithoutReceivedInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutSentInvitationsInput = {
@@ -1587,6 +1630,7 @@ export type UserUpdateWithoutSentInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -1617,6 +1661,7 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedTasksInput = {
@@ -1647,6 +1692,7 @@ export type UserCreateWithoutCreatedTasksInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTasksInput = {
@@ -1677,6 +1723,7 @@ export type UserUncheckedCreateWithoutCreatedTasksInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -1723,6 +1770,7 @@ export type UserUpdateWithoutCreatedTasksInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTasksInput = {
@@ -1753,6 +1801,7 @@ export type UserUncheckedUpdateWithoutCreatedTasksInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
@@ -1783,6 +1832,7 @@ export type UserCreateWithoutProgressInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
@@ -1813,6 +1863,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -1859,6 +1910,7 @@ export type UserUpdateWithoutProgressInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
@@ -1889,6 +1941,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutActivityDailyProgressInput = {
@@ -1919,6 +1972,7 @@ export type UserCreateWithoutActivityDailyProgressInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutActivityDailyProgressInput = {
@@ -1949,6 +2003,7 @@ export type UserUncheckedCreateWithoutActivityDailyProgressInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutActivityDailyProgressInput = {
@@ -1995,6 +2050,7 @@ export type UserUpdateWithoutActivityDailyProgressInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityDailyProgressInput = {
@@ -2025,6 +2081,7 @@ export type UserUncheckedUpdateWithoutActivityDailyProgressInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -2055,6 +2112,7 @@ export type UserCreateWithoutSessionsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -2085,6 +2143,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -2131,6 +2190,7 @@ export type UserUpdateWithoutSessionsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -2161,6 +2221,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
@@ -2191,6 +2252,7 @@ export type UserCreateWithoutProfileInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -2221,6 +2283,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -2267,6 +2330,7 @@ export type UserUpdateWithoutProfileInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -2297,6 +2361,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReceivedRequestsInput = {
@@ -2327,6 +2392,7 @@ export type UserCreateWithoutReceivedRequestsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedRequestsInput = {
@@ -2357,6 +2423,7 @@ export type UserUncheckedCreateWithoutReceivedRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedRequestsInput = {
@@ -2392,6 +2459,7 @@ export type UserCreateWithoutSentRequestsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentRequestsInput = {
@@ -2422,6 +2490,7 @@ export type UserUncheckedCreateWithoutSentRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentRequestsInput = {
@@ -2468,6 +2537,7 @@ export type UserUpdateWithoutReceivedRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedRequestsInput = {
@@ -2498,6 +2568,7 @@ export type UserUncheckedUpdateWithoutReceivedRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutSentRequestsInput = {
@@ -2539,6 +2610,7 @@ export type UserUpdateWithoutSentRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentRequestsInput = {
@@ -2569,6 +2641,7 @@ export type UserUncheckedUpdateWithoutSentRequestsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPasswordResetsInput = {
@@ -2599,6 +2672,7 @@ export type UserCreateWithoutPasswordResetsInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPasswordResetsInput = {
@@ -2629,6 +2703,7 @@ export type UserUncheckedCreateWithoutPasswordResetsInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -2675,6 +2750,7 @@ export type UserUpdateWithoutPasswordResetsInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPasswordResetsInput = {
@@ -2699,6 +2775,147 @@ export type UserUncheckedUpdateWithoutPasswordResetsInput = {
   sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutGoogleLoginCodesInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGoogleLoginCodesInput = {
+  id?: string
+  name?: string | null
+  username?: string | null
+  email?: string | null
+  password?: string | null
+  avatar?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  globalRole?: $Enums.GlobalRole
+  isActive?: boolean
+  googleId?: string | null
+  createdActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatorInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedCreateNestedManyWithoutUserInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedCreateNestedManyWithoutSenderInput
+  activity?: Prisma.ActivityMemberUncheckedCreateNestedManyWithoutUserInput
+  createdTasks?: Prisma.ActivityTaskUncheckedCreateNestedManyWithoutCreatorInput
+  receivedRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutReceiverInput
+  sentRequests?: Prisma.FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  passwordResets?: Prisma.PasswordResetUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  progress?: Prisma.TaskProgressUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
+  chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGoogleLoginCodesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedCreateWithoutGoogleLoginCodesInput>
+}
+
+export type UserUpsertWithoutGoogleLoginCodesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedUpdateWithoutGoogleLoginCodesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedCreateWithoutGoogleLoginCodesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGoogleLoginCodesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGoogleLoginCodesInput, Prisma.UserUncheckedUpdateWithoutGoogleLoginCodesInput>
+}
+
+export type UserUpdateWithoutGoogleLoginCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  progress?: Prisma.TaskProgressUpdateManyWithoutUserNestedInput
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
+  chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGoogleLoginCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  globalRole?: Prisma.EnumGlobalRoleFieldUpdateOperationsInput | $Enums.GlobalRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdActivities?: Prisma.ActivityUncheckedUpdateManyWithoutCreatorNestedInput
+  ActivityDailyProgress?: Prisma.ActivityDailyProgressUncheckedUpdateManyWithoutUserNestedInput
+  receivedInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  sentInvitations?: Prisma.ActivityInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  activity?: Prisma.ActivityMemberUncheckedUpdateManyWithoutUserNestedInput
+  createdTasks?: Prisma.ActivityTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  receivedRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutReceiverNestedInput
+  sentRequests?: Prisma.FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notification?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  passwordResets?: Prisma.PasswordResetUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   progress?: Prisma.TaskProgressUncheckedUpdateManyWithoutUserNestedInput
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -2735,6 +2952,7 @@ export type UserCreateWithoutMessagesInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
@@ -2765,6 +2983,7 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesInput = {
@@ -2811,6 +3030,7 @@ export type UserUpdateWithoutMessagesInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -2841,6 +3061,7 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationInput = {
@@ -2871,6 +3092,7 @@ export type UserCreateWithoutNotificationInput = {
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationInput = {
@@ -2901,6 +3123,7 @@ export type UserUncheckedCreateWithoutNotificationInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationInput = {
@@ -2947,6 +3170,7 @@ export type UserUpdateWithoutNotificationInput = {
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationInput = {
@@ -2977,6 +3201,7 @@ export type UserUncheckedUpdateWithoutNotificationInput = {
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   websiteUsage?: Prisma.WebsiteUsageUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWebsiteUsageInput = {
@@ -3007,6 +3232,7 @@ export type UserCreateWithoutWebsiteUsageInput = {
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
   achievements?: Prisma.UserTaskAchievementCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWebsiteUsageInput = {
@@ -3037,6 +3263,7 @@ export type UserUncheckedCreateWithoutWebsiteUsageInput = {
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
   achievements?: Prisma.UserTaskAchievementUncheckedCreateNestedManyWithoutUserInput
   chats?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWebsiteUsageInput = {
@@ -3083,6 +3310,7 @@ export type UserUpdateWithoutWebsiteUsageInput = {
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
   achievements?: Prisma.UserTaskAchievementUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWebsiteUsageInput = {
@@ -3113,6 +3341,7 @@ export type UserUncheckedUpdateWithoutWebsiteUsageInput = {
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
   achievements?: Prisma.UserTaskAchievementUncheckedUpdateManyWithoutUserNestedInput
   chats?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  googleLoginCodes?: Prisma.GoogleLoginCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -3137,6 +3366,7 @@ export type UserCountOutputType = {
   achievements: number
   chats: number
   websiteUsage: number
+  googleLoginCodes: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3156,6 +3386,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   achievements?: boolean | UserCountOutputTypeCountAchievementsArgs
   chats?: boolean | UserCountOutputTypeCountChatsArgs
   websiteUsage?: boolean | UserCountOutputTypeCountWebsiteUsageArgs
+  googleLoginCodes?: boolean | UserCountOutputTypeCountGoogleLoginCodesArgs
 }
 
 /**
@@ -3280,6 +3511,13 @@ export type UserCountOutputTypeCountWebsiteUsageArgs<ExtArgs extends runtime.Typ
   where?: Prisma.WebsiteUsageWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoogleLoginCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoogleLoginCodeWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3310,6 +3548,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
   chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
   websiteUsage?: boolean | Prisma.User$websiteUsageArgs<ExtArgs>
+  googleLoginCodes?: boolean | Prisma.User$googleLoginCodesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3374,6 +3613,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
   chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
   websiteUsage?: boolean | Prisma.User$websiteUsageArgs<ExtArgs>
+  googleLoginCodes?: boolean | Prisma.User$googleLoginCodesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3399,6 +3639,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     achievements: Prisma.$UserTaskAchievementPayload<ExtArgs>[]
     chats: Prisma.$ChatConversationPayload<ExtArgs>[]
     websiteUsage: Prisma.$WebsiteUsagePayload<ExtArgs>[]
+    googleLoginCodes: Prisma.$GoogleLoginCodePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3823,6 +4064,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   achievements<T extends Prisma.User$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTaskAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chats<T extends Prisma.User$chatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   websiteUsage<T extends Prisma.User$websiteUsageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$websiteUsageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WebsiteUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  googleLoginCodes<T extends Prisma.User$googleLoginCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$googleLoginCodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoogleLoginCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4656,6 +4898,30 @@ export type User$websiteUsageArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.WebsiteUsageScalarFieldEnum | Prisma.WebsiteUsageScalarFieldEnum[]
+}
+
+/**
+ * User.googleLoginCodes
+ */
+export type User$googleLoginCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GoogleLoginCode
+   */
+  select?: Prisma.GoogleLoginCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GoogleLoginCode
+   */
+  omit?: Prisma.GoogleLoginCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoogleLoginCodeInclude<ExtArgs> | null
+  where?: Prisma.GoogleLoginCodeWhereInput
+  orderBy?: Prisma.GoogleLoginCodeOrderByWithRelationInput | Prisma.GoogleLoginCodeOrderByWithRelationInput[]
+  cursor?: Prisma.GoogleLoginCodeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoogleLoginCodeScalarFieldEnum | Prisma.GoogleLoginCodeScalarFieldEnum[]
 }
 
 /**

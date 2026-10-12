@@ -5,6 +5,7 @@ import { CookieUtils } from "../../utils/cookie.js";
 import { tokenUtils } from "../../utils/token.js";
 import { AuthServices } from "./auth.services.js";
 import { jwtUtils } from "../../utils/jwt.js";
+import AppError from "../../errorHelpers/AppError.js";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -212,16 +213,48 @@ const googleLogin = async (req: Request, res: Response, next: NextFunction) => {
       );
     }
 
-    const { user, accessToken, sessionToken } = await AuthServices.googleLogin(
-      code
+    const {user} = await AuthServices.googleLogin(code);
+
+    const loginCode = await AuthServices.createGoogleLoginCode(user.id);
+
+    return res.redirect(
+      `${
+        process.env.FRONTEND_URL
+      }/api/auth/google/callback?code=${encodeURIComponent(loginCode)}`
     );
 
-    tokenUtils.setAccessTokenCookie(res, accessToken);
-    tokenUtils.setSessionTokenCookie(res, sessionToken);
 
-    return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);;
   } catch (err) {
     next(err);
+  }
+};
+
+const exchangeGoogleLoginCode = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { code } = req.body;
+
+    if (typeof code !== "string" || !code) {
+      throw new AppError(400, "Google login code is required");
+    }
+
+    const { user, accessToken, sessionToken } =
+      await AuthServices.exchangeGoogleLoginCode(code);
+
+    // Return tokens to the trusted Next.js server route.
+    // Do not set cookies on the Render response.
+    return res.status(status.OK).json({
+      success: true,
+      message: "Google login successful",
+      data: user,
+      token: accessToken,
+      sessionToken,
+    });
+  } catch (err) {
+    return next(err);
   }
 };
 
@@ -235,4 +268,5 @@ export const AuthControllers = {
   changePassword,
   verifyToken,
   googleLogin,
+  exchangeGoogleLoginCode
 };

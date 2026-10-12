@@ -28,6 +28,7 @@ model User {
   achievements          UserTaskAchievement[]
   chats                 ChatConversation[]
   websiteUsage          WebsiteUsage[]
+  googleLoginCodes      GoogleLoginCode[]
 
   @@index([email])
   @@index([username])
@@ -89,5 +90,18 @@ model PasswordReset {
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([expiresAt])
+}
+
+
+model GoogleLoginCode {
+  id        String   @id @default(cuid())
+  codeHash  String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([expiresAt])
 }

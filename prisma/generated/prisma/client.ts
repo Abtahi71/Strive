@@ -132,6 +132,11 @@ export type Friendship = Prisma.FriendshipModel
  */
 export type PasswordReset = Prisma.PasswordResetModel
 /**
+ * Model GoogleLoginCode
+ * 
+ */
+export type GoogleLoginCode = Prisma.GoogleLoginCodeModel
+/**
  * Model ConversationGroup
  * 
  */
