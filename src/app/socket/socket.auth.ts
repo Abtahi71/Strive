@@ -27,20 +27,20 @@ export const socketAuth = (socket: Socket, next: (err?: Error) => void) => {
   try {
     const cookieHeader = socket.handshake.headers.cookie;
 
-    const token = getAccessToken(cookieHeader);
+    const token = socket.handshake.auth?.token || getAccessToken(cookieHeader);
 
-    console.log("this is the token", token)
+    console.log("this is the token in socket", token)
 
     if (!token) {
-      return next(new Error("Unauthorized hehehe"));
+      return next(new Error("Unauthorized hehehe: no token"));
     }
 
     const decoded = jwt.verify(token, process.env.ACCESS_SECRET!) as JwtPayload;
 
-    console.log("this is decoded",decoded)
+    console.log("this is decoded in socket",decoded)
 
     if (!decoded.userId) {
-      return next(new Error("Unauthorized hahaha"));
+      return next(new Error("Unauthorized hahaha: invalid payload"));
     }
 
     socket.data.userId = decoded.userId;
