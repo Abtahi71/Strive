@@ -46,7 +46,7 @@ export const socketAuth = (socket: Socket, next: (err?: Error) => void) => {
     socket.data.userId = decoded.userId;
 
     next();
-  } catch (error) {
+  } catch (error:any) {
     console.log("THIS IS ERROR MESSAGE",error.message)
     next(error.message);
   }

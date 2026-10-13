@@ -3817,11 +3817,17 @@ var socketAuth = (socket, next) => {
 };
 
 // src/app/socket/socket.server.ts
+var allowedOrigins2 = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  process.env.FRONTEND_URL
+].filter((origin) => Boolean(origin));
 var initializeSocket = (httpServer2) => {
   const io2 = new Server(httpServer2, {
     cors: {
-      origin: "http://localhost:3000",
-      credentials: true
+      origin: allowedOrigins2,
+      credentials: true,
+      methods: ["GET", "POST"]
     }
   });
   io2.use(socketAuth);
