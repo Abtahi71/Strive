@@ -11,6 +11,17 @@ import crypto from "crypto";
 const register = async(payload:any)=>{
     const existingUser = await prisma.user.findFirst({where:{OR:[{email:payload.email},{username:payload.email}]}})
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let username,email
+
+    if(emailRegex.test(payload.email)){
+      username = payload.email.split("@")[0];
+      email = payload.email
+    }else{
+      username = payload.email
+    }
+
     if(existingUser){
         throw new AppError(400,"User already exists")
     }
@@ -19,7 +30,8 @@ const register = async(payload:any)=>{
 
     const user = await prisma.user.create({
         data:{
-            ...payload,
+            username,
+            email,
             password:hashedPassword
         }
     })

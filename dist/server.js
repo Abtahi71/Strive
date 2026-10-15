@@ -290,13 +290,22 @@ var googleClient = new OAuth2Client(
 import crypto2 from "crypto";
 var register = async (payload) => {
   const existingUser = await prisma.user.findFirst({ where: { OR: [{ email: payload.email }, { username: payload.email }] } });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let username, email;
+  if (emailRegex.test(payload.email)) {
+    username = payload.email.split("@")[0];
+    email = payload.email;
+  } else {
+    username = payload.email;
+  }
   if (existingUser) {
     throw new AppError_default(400, "User already exists");
   }
   const hashedPassword = await bcrypt.hash(payload.password, 10);
   const user = await prisma.user.create({
     data: {
-      ...payload,
+      username,
+      email,
       password: hashedPassword
     }
   });
@@ -737,6 +746,49 @@ var checkAuth = (...authRoles) => async (req, res, next) => {
     console.log("PARAMS:", req.params);
     console.log("COOKIE:", req.headers.cookie);
     console.log("================================");
+    next(err);
+  }
+};
+var optionalAuth = (...authRoles) => async (req, res, next) => {
+  try {
+    console.log("========== CHECK AUTH ==========");
+    console.log("METHOD:", req.method);
+    console.log("(or)ORIGINAL URL:", req.originalUrl);
+    console.log("(or)PATH:", req.path);
+    console.log("PARAMS:", req.params);
+    console.log("COOKIE:", req.headers.cookie);
+    console.log("================================");
+    const accessToken = CookieUtils.getCookie(req, "accessToken");
+    if (!accessToken) {
+      console.log("NO ACCESSTOKEN");
+      return next();
+    }
+    const verifiedToken = jwtUtils.verifyToken(accessToken, process.env.ACCESS_SECRET);
+    if (!verifiedToken.success) {
+      throw new AppError_default(
+        status3.UNAUTHORIZED,
+        "You are not logged in or your access token is invalid in optional Auth"
+      );
+    }
+    const payload = verifiedToken.data;
+    req.user = {
+      userId: payload.userId,
+      role: payload.role,
+      email: payload.email
+    };
+    if (authRoles.length > 0 && !authRoles.includes(payload.role)) {
+      throw new AppError_default(status3.FORBIDDEN, "You are not authorized to access this route");
+    }
+    next();
+  } catch (err) {
+    console.log("========== CHECK AUTH ==========");
+    console.log("METHOD:", req.method);
+    console.log("(or)ORIGINAL URL:", req.originalUrl);
+    console.log("(or)PATH:", req.path);
+    console.log("PARAMS:", req.params);
+    console.log("COOKIE:", req.headers.cookie);
+    console.log("================================");
+    console.log(err.message);
     next(err);
   }
 };
@@ -1454,8 +1506,7 @@ router2.get("/totalCompletedTask", checkAuth(GlobalRole.USER), activityControlle
 router2.post("/create-task/:activityId", checkAuth(GlobalRole.USER), activityController.createTask);
 router2.get(
   "/activity-info/:activityId",
-  checkAuth(GlobalRole.USER),
-  //optionalAuth(GlobalRole.USER),
+  optionalAuth(GlobalRole.USER),
   activityController.getActivityInfo
 );
 router2.get("/schedule/:taskId", activityController.getSchedules);
@@ -3798,15 +3849,15 @@ var getAccessToken2 = (cookieHeader) => {
 var socketAuth = (socket, next) => {
   try {
     const cookieHeader = socket.handshake.headers.cookie;
-    const token = getAccessToken2(cookieHeader);
-    console.log("this is the token", token);
+    const token = socket.handshake.auth?.token || getAccessToken2(cookieHeader);
+    console.log("this is the token in socket", token);
     if (!token) {
-      return next(new Error("Unauthorized hehehe"));
+      return next(new Error("Unauthorized hehehe: no token"));
     }
     const decoded = jwt2.verify(token, process.env.ACCESS_SECRET);
-    console.log("this is decoded", decoded);
+    console.log("this is decoded in socket", decoded);
     if (!decoded.userId) {
-      return next(new Error("Unauthorized hahaha"));
+      return next(new Error("Unauthorized hahaha: invalid payload"));
     }
     socket.data.userId = decoded.userId;
     next();

@@ -32,7 +32,7 @@ router.post(
 router.get("/totalCompletedTask", checkAuth(GlobalRole.USER), activityController.totalCompletedTask);
 router.post("/create-task/:activityId", checkAuth(GlobalRole.USER), activityController.createTask);
 router.get("/activity-info/:activityId",
-  checkAuth(GlobalRole.USER),//optionalAuth(GlobalRole.USER),
+  optionalAuth(GlobalRole.USER),
    activityController.getActivityInfo);
 router.get("/schedule/:taskId", activityController.getSchedules);
 
