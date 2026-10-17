@@ -178,32 +178,32 @@ const getActivityMembers = async(activityId:string)=>{
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const result = await prisma.activityMember.findMany({
-        where:{activityId:activityId},
-        include:{user:true}
-    })
+  // const result = await prisma.activityMember.findMany({
+  //       where:{activityId:activityId},
+  //       include:{user:true}
+  //   })
 
-    await Promise.all(result.map(async(member) => {
-        const isDone = await prisma.activityDailyProgress.findUnique({
-          where: {
-            activityId_userId_date: {
-              activityId: activityId,
-              userId: member.userId,
-              date: yesterday,
-            },
-            completed:true
-          },
-        })
-        if(!isDone){
-            await prisma.activityMember.update({
-                where:{activityId_userId:{activityId:activityId,userId:member.userId}},
-                data:{
-                  currentStreak:0,
-                  longestStreak:member.currentStreak>member.longestStreak?member.currentStreak:member.longestStreak
-                }
-            })
-        }
-      }))
+  //   await Promise.all(result.map(async(member) => {
+  //       const isDone = await prisma.activityDailyProgress.findUnique({
+  //         where: {
+  //           activityId_userId_date: {
+  //             activityId: activityId,
+  //             userId: member.userId,
+  //             date: yesterday,
+  //           },
+  //           completed:true
+  //         },
+  //       })
+  //       if(!isDone){
+  //           await prisma.activityMember.update({
+  //               where:{activityId_userId:{activityId:activityId,userId:member.userId}},
+  //               data:{
+  //                 currentStreak:0,
+  //                 longestStreak:member.currentStreak>member.longestStreak?member.currentStreak:member.longestStreak
+  //               }
+  //           })
+  //       }
+  //     }))
 
       return await prisma.activityMember.findMany({
         where:{activityId:activityId},
